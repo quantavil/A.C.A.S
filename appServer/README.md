@@ -28,14 +28,13 @@ This program hosts a local WebSocket server on your computer. While local server
 - [COI-Serviceworker](https://github.com/gzuidhof/coi-serviceworker) – allowing WASM on GitHub pages, extremely important library
 - [ChessgroundX](https://github.com/gbtami/chessgroundx) – for displaying a board on the GUI. Modified the library a bit
 - [FileSaver](http://purl.eligrey.com/github/FileSaver.js) – for saving the config file
-- [bodymovin](https://github.com/airbnb/lottie-web) – for SVG animations
 - [chess.js](https://github.com/jhlywa/chess.js) – used for Maia 2 engine implementation
 - [onnxruntime-web](https://github.com/Microsoft/onnxruntime) – used for Maia 2 engine implementation
 - [Klaro!](https://github.com/klaro-org/klaro-js) – for legal reasons, to ask user for cookie permission
 - [SnapDOM](https://github.com/zumerlab/snapdom) – for DOM screenshots (e.g. turning the board into image)
 - [UniversalBoardDrawer](https://github.com/Hakorr/UniversalBoardDrawer) – for drawing arrows on the GUI and the chess site chessboards
 - [CommLink](https://github.com/AugmentedWeb/CommLink) – for cross-window communication between the GUI tab and chess sites
-- [Bootstrap Icons](https://getbootstrap.com/) – for the icons
+- [Bootstrap Icons](https://getbootstrap.com/) – for the icons (loaded locally/offline)
 - [Mona Sans](https://github.com/github/mona-sans) – GitHub's open-source variable font
 - [Rubik](https://fonts.google.com/specimen/Rubik) – a sans-serif font family by Hubert & Fischer
 - [IBM Plex Sans](https://github.com/IBM/plex) – IBM's official open-source typeface

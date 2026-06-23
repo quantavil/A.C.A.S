@@ -196,7 +196,31 @@ body {
     overflow: hidden;
 }
 #lottie-animation {
-    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    margin: 40px auto;
+}
+#lottie-animation svg {
+    width: 250px;
+    height: 250px;
+    color: #5f8895;
+}
+.spin-circle {
+    transform-origin: center;
+    animation: loaderSpin 15s linear infinite;
+}
+.pulse-circle {
+    transform-origin: center;
+    animation: loaderPulse 2s ease-in-out infinite;
+}
+@keyframes loaderSpin {
+    to { transform: rotate(360deg); }
+}
+@keyframes loaderPulse {
+    0%, 100% { transform: scale(0.98); opacity: 0.3; }
+    50% { transform: scale(1.02); opacity: 0.8; }
 }
 .data-transfer {
     margin-top: 20px;

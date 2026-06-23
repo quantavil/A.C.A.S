@@ -12,7 +12,7 @@ A.C.A.S (Advanced Chess Assistance System) is an open-source chess assistant (**
 > [!CAUTION]
 > The use of A.C.A.S may violate the rules and lead to disqualification or banning from tournaments and online platforms. A.C.A.S is meant to be used as a real-time learning tool. Remember, struggling at chess doesn't mean you're unintelligent... it's not an IQ test, just a board game. And even IQ tests only measure certain aspects of your abilities. Use A.C.A.S fairly, be kind to other players.
 
-| [▶️ Open A.C.A.S](https://quantavil.github.io/A.C.A.S/) | [⬇️ Install (GreasyFork)](https://greasyfork.org/en/scripts/459137-a-c-a-s-advanced-chess-assistance-system)  | [💬 Discuss With Community](https://hakorr.github.io/Userscripts/community/invite)
+| [▶️ Open A.C.A.S](https://quantavil.github.io/A.C.A.S/) | [⬇️ Install (GreasyFork)](https://greasyfork.org/en/scripts/583158-acas-bot-advanced-chess-assistance-system)  | [💬 Discuss With Community](https://hakorr.github.io/Userscripts/community/invite)
 |-------|-------|-------|
 
 * Many built in WebAssembly engines (faster than JS)
@@ -48,14 +48,13 @@ A.C.A.S (Advanced Chess Assistance System) is an open-source chess assistant (**
 | [COI-Serviceworker](https://github.com/gzuidhof/coi-serviceworker) | Enables WASM on GitHub Pages | MIT |
 | [ChessgroundX](https://github.com/gbtami/chessgroundx) | Chessboard UI (modified) | GPL-3.0 |
 | [FileSaver](http://purl.eligrey.com/github/FileSaver.js) | Save config files | MIT |
-| [bodymovin (lottie-web)](https://github.com/airbnb/lottie-web) | SVG animations | MIT |
 | [chess.js](https://github.com/jhlywa/chess.js) | Game logic (Maia 2) | BSD-2-Clause |
 | [onnxruntime-web](https://github.com/Microsoft/onnxruntime) | Run ML models in browser | MIT |
 | [Klaro!](https://github.com/klaro-org/klaro-js) | Cookie consent manager | BSD 3-Clause |
 | [SnapDOM](https://github.com/zumerlab/snapdom) | DOM → image screenshots | MIT |
 | [UniversalBoardDrawer](https://github.com/Hakorr/UniversalBoardDrawer) | Draw arrows on boards | GPL-3.0 |
 | [CommLink](https://github.com/AugmentedWeb/CommLink) | Cross-window communication | GPL-3.0 |
-| [Bootstrap Icons](https://getbootstrap.com/) | Icon set | MIT |
+| [Bootstrap Icons](https://getbootstrap.com/) | Icon set (loaded locally/offline) | MIT |
 | [Mona Sans](https://github.com/github/mona-sans) | Font (GitHub) | SIL Open Font License |
 | [Rubik](https://fonts.google.com/specimen/Rubik) | Sans-serif font | SIL Open Font License |
 | [IBM Plex Sans](https://github.com/IBM/plex) | IBM typeface | SIL Open Font License |

@@ -30,29 +30,16 @@ function insertGas(elem) {
     (adsbygoogle = window.adsbygoogle || []).push({});
 }
 
-function initLottieAndGas() {
-    const lottieElement = document.querySelector("#lottie-animation");
-
-    if (lottieElement && !lottieElement.dataset.lottieLoaded) {
-        lottie.loadAnimation({
-            container: lottieElement,
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: '../assets/json/lottie.json'
-        });
-        lottieElement.dataset.lottieLoaded = "true"; // Prevent duplicate loading
-    }
-
+function initGas() {
     [...document.querySelectorAll('.gas')]
         .filter(x => !x.dataset.processed)
         .forEach(insertGas);
 }
 
-initLottieAndGas();
+initGas();
 
 const observer = new MutationObserver((mutations, obs) => {
-    initLottieAndGas();
+    initGas();
 });
 
 observer.observe(document.body, { childList: true, subtree: true });
