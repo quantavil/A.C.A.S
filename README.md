@@ -27,6 +27,7 @@ A.C.A.S (Advanced Chess Assistance System) is an open-source chess assistant (**
 * Audio TTS suggestions with adjustable speed
 * Floating panel for stability and faster calculation
 * Adaptive thinking depth (thinks deeper when losing, shallower when winning)
+* Humanized move methods (Click, Drag, or Natural Hybrid that alternates styles and utilizes curved Bezier trajectories)
 * Customizable themes (colors, fonts, textures)
 * Chess variants supported (chess960, Fairy Stockfish variants)
 * Translated into 30+ languages
