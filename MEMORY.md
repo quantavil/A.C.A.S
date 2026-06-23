@@ -51,6 +51,7 @@ A.C.A.S/
 - **Firefox Picture-in-Picture & State Sync:** Prevented Firefox PiP termination by keeping the video element rendering inline in the DOM rather than off-screen/hidden. Integrated `enterpictureinpicture` and `leavepictureinpicture` listeners to sync state with the `pip` checkbox.
 - **Pychess Rendering Fix:** Replaced `Math.floor` with `Math.round` in `getBoardDimensionsFromSize` to resolve subpixel truncation errors that broke rank 8 piece extraction. Added fallback to CSS transform-based coordinate parsing in `pychess.org` adapter when `cgKey` is missing.
 - **Picture-in-Picture Engine Name Display:** Added a helper to map engine keys to human-friendly names and passed it to `updatePipData` during calculations/new games, replacing static 'A.C.A.S' text on the PIP window header.
+- **Crazyhouse Drop Move Parsing:** Added support in `engineMessageProcessor.js` to parse drop moves (e.g. `P@e4`) using a new `dropRegex` and handle them safely in `AcasInstance.js`'s piece evaluation.
 
 ## Blunders
 - None logged yet.

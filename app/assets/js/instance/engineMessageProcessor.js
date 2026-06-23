@@ -111,18 +111,31 @@ export default async function engineMessageProcessor(msg, profile) {
 
     if(data?.pv && isMessageForCurrentFen) {
         const moveRegex = /^([a-zA-Z]\d+)([a-zA-Z]\d+)([qrbnQRBN])?$/;
+        const dropRegex = /^([PNBRQpnbrq])@([a-zA-Z]\d+)$/;
         const ranking = VAR_TO_CORRECT_TYPE(data?.multipv) || 1;
 
         let moves = data.pv.split(' ').map(move => {
             const moveRegexResult = move.match(moveRegex);
-            if(!moveRegexResult) return null;
+            if(moveRegexResult) {
+                return {
+                    from: moveRegexResult[1],
+                    to: moveRegexResult[2],
+                    promotion: moveRegexResult[3] || null,
+                    uci: move
+                };
+            }
 
-            return {
-                from: moveRegexResult[1],
-                to: moveRegexResult[2],
-                promotion: moveRegexResult[3] || null,
-                uci: move
-            };
+            const dropRegexResult = move.match(dropRegex);
+            if(dropRegexResult) {
+                return {
+                    from: dropRegexResult[1].toUpperCase() + '@',
+                    to: dropRegexResult[2],
+                    promotion: null,
+                    uci: move
+                };
+            }
+
+            return null;
         });
 
         if(moves?.length === 1) // if no opponent move guesses yet

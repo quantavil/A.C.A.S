@@ -811,10 +811,18 @@ export default class AcasInstance {
         if (moveObjects && Array.isArray(moveObjects)) {
             moveObjects.forEach(moveObj => {
                 if (moveObj.player && moveObj.player[0]) {
-                    moveObj.piece = GET_PIECE_AT_SQUARE(this.currentFen, moveObj.player[0]);
+                    if (moveObj.player[0].includes('@')) {
+                        moveObj.piece = moveObj.player[0][0];
+                    } else {
+                        moveObj.piece = GET_PIECE_AT_SQUARE(this.currentFen, moveObj.player[0]);
+                    }
                 }
                 if (moveObj.opponent && moveObj.opponent[0]) {
-                    moveObj.opponentPiece = GET_PIECE_AT_SQUARE(this.currentFen, moveObj.opponent[0]);
+                    if (moveObj.opponent[0].includes('@')) {
+                        moveObj.opponentPiece = moveObj.opponent[0][0];
+                    } else {
+                        moveObj.opponentPiece = GET_PIECE_AT_SQUARE(this.currentFen, moveObj.opponent[0]);
+                    }
                 }
             });
         }
