@@ -105,8 +105,9 @@ async function refreshPipView() {
           tTo = tMove?.player?.[1];
 
     const centipawnEval = pipData?.centipawnEval / 100;
+    const piecePrefix = bestMove?.piece ? `${bestMove.piece.toUpperCase()} ` : '';
     const mediaTitle = from
-        ? `${from?.toUpperCase()} ➔ ${to?.toUpperCase()}`
+        ? `${piecePrefix}${from?.toUpperCase()} ➔ ${to?.toUpperCase()}`
         : `Hold on, I'm thinking...`;
 
     let engineEvaluation = pipData?.eval;
@@ -207,22 +208,25 @@ async function refreshPipView() {
         if(to === 'one)') {
             ctxQueue.push(['fillText', ['≽(•⩊ •マ≼', 16, pipHeaderHeight + 100]]);
         } else if(bestMove && !CONCEAL_ASSISTANCE_ACTIVE) {
+            const piecePrefix = bestMove.piece ? `${bestMove.piece.toUpperCase()} ` : '';
             ctxQueue.push(['fillText',
-                [`${from.toUpperCase()} ➔ ${to.toUpperCase()}`, 16, pipHeaderHeight + 100]
+                [`${piecePrefix}${from.toUpperCase()} ➔ ${to.toUpperCase()}`, 16, pipHeaderHeight + 100]
             ]);
         }
 
         if(sFrom && sTo && !CONCEAL_ASSISTANCE_ACTIVE) {
             ctxQueue.push(['fillStyle', 'rgba(255, 255, 255, 0.5)']);
             ctxQueue.push(['font', `500 ${pipFontSizes.medium}px Mona Sans`]);
+            const sPiecePrefix = sMove.piece ? `${sMove.piece.toUpperCase()} ` : '';
             ctxQueue.push(['fillText',
-                [`2. (${sFrom.toUpperCase()} ➔ ${sTo.toUpperCase()})`, 16, pipHeaderHeight + 135]
+                [`2. (${sPiecePrefix}${sFrom.toUpperCase()} ➔ ${sTo.toUpperCase()})`, 16, pipHeaderHeight + 135]
             ]);
         }
 
         if(tFrom && tTo && !CONCEAL_ASSISTANCE_ACTIVE) {
+            const tPiecePrefix = tMove.piece ? `${tMove.piece.toUpperCase()} ` : '';
             ctxQueue.push(['fillText',
-                [`3. (${tFrom.toUpperCase()} ➔ ${tTo.toUpperCase()})`, 180, pipHeaderHeight + 135]
+                [`3. (${tPiecePrefix}${tFrom.toUpperCase()} ➔ ${tTo.toUpperCase()})`, 180, pipHeaderHeight + 135]
             ]);
         }
     }

@@ -809,6 +809,17 @@ export default class AcasInstance {
         const onlySuggestPieces = await this.getConfigValue(this.configKeys.onlySuggestPieces, profile);
         const movesOnDemand = await this.getConfigValue(this.configKeys.movesOnDemand, profile);
 
+        if (moveObjects && Array.isArray(moveObjects)) {
+            moveObjects.forEach(moveObj => {
+                if (moveObj.player && moveObj.player[0]) {
+                    moveObj.piece = GET_PIECE_AT_SQUARE(this.currentFen, moveObj.player[0]);
+                }
+                if (moveObj.opponent && moveObj.opponent[0]) {
+                    moveObj.opponentPiece = GET_PIECE_AT_SQUARE(this.currentFen, moveObj.opponent[0]);
+                }
+            });
+        }
+
         this.Interface.markMoves(moveObjects, profile);
 
         if(displayMovesExternally) {

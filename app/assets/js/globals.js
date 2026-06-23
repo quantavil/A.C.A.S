@@ -498,6 +498,26 @@ function FEN_TO_ARRAYS(fen) {
     return board;
 }
 
+function GET_PIECE_AT_SQUARE(fen, square) {
+    if (!fen || !square) return '';
+    try {
+        const boardDimensions = GET_BOARD_DIMENSIONS_FROM_FEN(fen);
+        const [cols, rows] = boardDimensions;
+        const boardPart = fen.split(' ')[0];
+        const board = FEN_TO_ARRAYS(boardPart);
+        const fileChar = square[0].toLowerCase();
+        const rankNum = parseInt(square.slice(1));
+        const colIndex = fileChar.charCodeAt(0) - 97;
+        const rowIndex = rows - rankNum;
+        if (board[rowIndex] && board[rowIndex][colIndex] !== undefined) {
+            return board[rowIndex][colIndex];
+        }
+    } catch (e) {
+        console.error('Error getting piece at square:', e);
+    }
+    return '';
+}
+
 function IS_PLAYER_ATTACKING_KING(currentFen, turn) {
     if(!currentFen) return false;
 
