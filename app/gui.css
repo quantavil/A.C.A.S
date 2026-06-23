@@ -111,7 +111,7 @@
 body {
 	font-family: "Mona Sans", "Rubik", "IBM Plex Sans", sans-serif;
 	margin: 0;
-	background-color: #0b0f19;
+	background-color: #1f1f23;
 	color: #e4e4e7;
 	height: 100vh;
 	display: flex;
@@ -160,14 +160,14 @@ cg-container {
 }
 #acas-header {
 	padding: 15px 20px 20px;
-	background-color: #121214;
+	background-color: #29292e;
 	height: 50px;
 	display: flex;
 	justify-content: space-between;
     z-index: 1000;
     position: sticky;
     top: 0;
-	border-bottom: 1px solid #27272a;
+	border-bottom: 1px solid #3f3f46;
 }
 #acas-logo {
 	font-size: 30px;
@@ -237,8 +237,8 @@ cg-container {
 	border-radius: 6px;
 	transition: all 150ms ease;
 	z-index: 10;
-	border: 1px solid #27272a;
-	background-color: #16161a;
+	border: 1px solid #3f3f46;
+	background-color: #323238;
 }
 #acas-instance-container {
 	display: flex;
@@ -254,7 +254,7 @@ cg-container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: #1a1a1e;
+	background-color: #242429;
 	padding: 16px 20px 20px 20px;
 	border-radius: 0 0 6px 6px;
 }
@@ -611,7 +611,7 @@ body:has(#install-notification:not(.hidden)) #acas-instance-container {
 	display: none !important;
 }
 #no-instances-container {
-    background-color: #16161a;
+    background-color: #323238;
 	color: #e4e4e7;
 	padding: 40px 24px;
 	display: flex;
@@ -621,7 +621,7 @@ body:has(#install-notification:not(.hidden)) #acas-instance-container {
 	width: 500px;
 	text-align: center;
 	z-index: 5;
-	border: 1px solid #27272a;
+	border: 1px solid #3f3f46;
 }
 #no-instances-title {
     font-size: 28px;
@@ -712,13 +712,13 @@ body:has(#install-notification:not(.hidden)) #acas-instance-container {
 #acas-settings-container {
 	display: flex;
 	height: fit-content;
-	background-color: #121214;
+	background-color: #29292e;
 	color: #e4e4e7;
 	flex-direction: column;
 	align-items: flex-start;
 	flex-grow: 1;
 	z-index: 10;
-	border-bottom: 1px solid #27272a;
+	border-bottom: 1px solid #3f3f46;
 }
 #settings-navbar {
 	width: fit-content;
@@ -824,10 +824,10 @@ body:has(#install-notification:not(.hidden)) #acas-instance-container {
 	color: rgb(255, 255, 255, 0.75);
 }
 .setting-panel {
-	background-color: #16161a;
+	background-color: #323238;
 	border-radius: 6px;
 	padding: 20px;
-	border: 1px solid #27272a;
+	border: 1px solid #3f3f46;
 	max-width: 300px;
 }
 .setting-panel>*:not(:last-child) {

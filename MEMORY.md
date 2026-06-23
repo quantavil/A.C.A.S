@@ -42,6 +42,9 @@ A.C.A.S/
   - Revamped UI styling from gamified blue-gray layout to a premium dark-bone monochromatic dashboard (`#0b0f19`/`#16161a`) with tactile spring click micro-interactions.
   - Decoupled from remote Bootstrap Icons CDN; created local SVG icon registry [icons.js](file:///home/quantavil/Documents/Project/A.C.A.S/app/assets/js/misc/icons.js) with dynamic checkmark inject actions.
   - Audit details preserved in [codebase_audit.md](file:///home/quantavil/.gemini/antigravity-cli/brain/0bcff703-dd9a-420d-91ca-458862b3feed/codebase_audit.md).
+- **Stealth & Automation Alignment:** Merged the Miscellaneous settings panel directly into the newly named "Stealth & Automation" panel using a horizontal separator, correcting the settings DOM container layout hierarchy.
+- **Warm Charcoal & Flat Refinements:** Lifted overall illumination by shifting base darks to warm charcoal (`#1f1f23`, `#29292e`, `#323238`) and borders to crisp slate (`#3f3f46`). Removed thick bottom borders and glassmorphism blurs on popups/dropdowns, replacing them with flat styling, custom shadow depth, and smooth modal entrance animations.
 
 ## Blunders
 - None logged yet.
+

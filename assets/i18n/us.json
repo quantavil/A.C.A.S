@@ -21,7 +21,7 @@
         ".visual-panel-title": "Visual",
         ".audible-panel-title": "Audible",
         ".misc-panel-title": "Miscellaneous",
-        ".hidden-panel-title": "Hidden",
+        ".hidden-panel-title": "Stealth & Automation",
         "#tos-title": "Welcome, my friend!",
         ".tos-description": "We're thrilled to have you here! A.C.A.S is all set and ready to provide you with a fantastic experience. Its circuits are already powered up and functioning, thanks to the userscript that has been installed.\n\nYou're fully equipped to explore and enjoy all the features and benefits that A.C.A.S brings to the table. Whether it's assistance, engagement, or a touch of fun you're seeking, A.C.A.S is here to serve you.",
         "#tos-continue-button": "Kickstart A.C.A.S",
