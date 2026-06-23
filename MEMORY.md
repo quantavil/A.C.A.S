@@ -1,11 +1,10 @@
 # Project: A.C.A.S (Advanced Chess Assistance System)
 
 ## Overview
-A.C.A.S is an open-source, multi-engine, multi-variant chess assistance system. It operates as a web-based UI/GUI communicating with a userscript (`acas.user.js`) that runs in separate tabs of chess websites (e.g., chess.com, lichess.org) via CommLink (cross-window postMessage communication). It supports built-in WASM chess engines (Stockfish, Fairy Stockfish, Lc0, Maia) and external UCI engines via a Node.js/Electron localhost server (`appServer`).
+A.C.A.S is an open-source, multi-engine, multi-variant chess assistance system. It operates as a web-based UI/GUI communicating with a userscript (located locally at `/home/quantavil/Documents/Project/userscript/ACAS-bot/` and online at [quantavil/userscript](https://github.com/quantavil/userscript/tree/main/ACAS-bot)) that runs in separate tabs of chess websites (e.g., chess.com, lichess.org) via CommLink (cross-window postMessage communication). It supports built-in WASM chess engines (Stockfish, Fairy Stockfish, Lc0, Maia) and external UCI engines via a Node.js/Electron localhost server (`appServer`).
 
 ## Structure
 A.C.A.S/
-├── acas.user.js           # Userscript loaded into chess website tabs
 ├── index.html             # Landing page / redirection to the app
 ├── app/                   # Main GUI application code
 │   ├── index.html         # Main GUI frontend
@@ -50,6 +49,7 @@ A.C.A.S/
 - **Lottie, Bootstrap Icons CDN, & Footer Removal**: Dropped bodymovin library, replaced with inline animated SVG loader in usage/index.html, and extended local icons.js with download, journals, tools, and chat-square-quote SVGs to replace Bootstrap Icons remote CDNs. Removed the bottom footer links and credit section from the app settings GUI.
 - **Floating Panel Settings Inline Integration:** Removed the `#floating-floaty` dialog settings modal entirely, moving the chess board videostream container and 'Display Board' checkbox inline, shown dynamically under `#pip-sub-settings` via setting changes.
 - **Firefox Picture-in-Picture & State Sync:** Prevented Firefox PiP termination by keeping the video element rendering inline in the DOM rather than off-screen/hidden. Integrated `enterpictureinpicture` and `leavepictureinpicture` listeners to sync state with the `pip` checkbox.
+- **Pychess Rendering Fix:** Replaced `Math.floor` with `Math.round` in `getBoardDimensionsFromSize` to resolve subpixel truncation errors that broke rank 8 piece extraction. Added fallback to CSS transform-based coordinate parsing in `pychess.org` adapter when `cgKey` is missing.
 
 ## Blunders
 - None logged yet.

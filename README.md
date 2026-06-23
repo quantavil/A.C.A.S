@@ -5,6 +5,9 @@
 > [!WARNING]
 > A.C.A.S is currently in development. Expect bugs, especially on variants.
 
+> [!NOTE]
+> The userscript development repository is located at [quantavil/userscript](https://github.com/quantavil/userscript/tree/main/ACAS-bot). Please refer to it for the userscript source code and build instructions.
+
 A.C.A.S (Advanced Chess Assistance System) is an open-source chess assistant (**not a chess cheat**), designed to help you make better moves using a chess engine. Just install the userscript, open the A.C.A.S GUI, and you're ready to go. No downloads necessary!
 
 ![Screenshot of A.C.A.S](assets/images/mock.png)
