@@ -321,7 +321,7 @@ export async function startPictureInPicture() {
         document.body.appendChild(video);
     }
 
-    if(!document.pictureInPictureEnabled && floatingPanelVideoElem) {
+    if(!video.requestPictureInPicture && floatingPanelVideoElem) {
         floatingFloaty.showModal();
     }
 
@@ -330,7 +330,11 @@ export async function startPictureInPicture() {
             refreshPipView();
 
             await video.play();
-            if(video?.requestPictureInPicture) await video.requestPictureInPicture();
+            if(video?.requestPictureInPicture) {
+                await video.requestPictureInPicture();
+            } else {
+                throw new Error('Picture-in-Picture not supported on this browser/video element.');
+            }
         } catch (err) {
             if(err.name === 'NotAllowedError') {
                 const handleUserInteraction = async () => {
@@ -344,6 +348,7 @@ export async function startPictureInPicture() {
                 document.addEventListener('keydown', handleUserInteraction);
             } else {
                 console.error(err);
+                if (floatingPanelVideoElem) floatingFloaty.showModal();
             }
         }
     };
