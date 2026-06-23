@@ -693,39 +693,17 @@
 					</div>
 					<div class="checkbox-input custom-input"><div><div class="input-title">Floating Panel</div>
 						<div class="input-subtitle">Important! Stops A.C.A.S from freezing!</div></div>
-						<div class="floaty-wrapper">
-							<button class="open-floaty-btn acas-fancy-button" data-icon="gear"></button>
-							<dialog id="floating-floaty">
-								<div class="floaty-container">
-									<section class="floaty-header">
-										<div class="title">
-											<h1 data-translation-ffs-title>Floating Panel Settings</h1>
-											<p data-translation-ffs-subtitle>These are mainly for Firefox users</p>
-										</div>
-										<div class="floaty-buttons">
-											<button class="floaty-close-btn acas-fancy-button" data-icon="close"></button>
-										</div>
-									</section>
-									<section class="floaty-body">
-										<p data-translation-ffs-instructions>(Note for Firefox users: Enable the 'Floating Panel' by right clicking the videostream below and select 'Watch in Picture-in-Picture'. Mobile users can try pressing down on the videostream for a second. Doing this will allow for faster calculations and more stable connection. If you don't want to see this panel every time you open A.C.A.S, disable 'Floating Panel' or start using Chrome.)</p>
-										<div class="setting-panel">
-											<div class="setting-panel-title" data-translation-ffs-videostream>Videostream</div>
-											<div id="floating-panel-video"></div>
-										</div>
-										<div class="setting-panel">
-											<div class="setting-panel-title" data-translation-adelo-regular>Regular settings</div>
-											<div class="checkbox-input custom-input"><div><div class="input-title">Display Board</div>
-												<div class="input-subtitle">Instead of just text, display the entire board</div></div><div class="checkbox-container">
-												<input type="checkbox" data-key="pipBoard" data-no-profile="true" data-default-value="false"><div class="checkbox-fill">✔</div></div>
-											</div>
-										</div>
-
-										<a target="_blank" href="../usage/" data-translation-learn-more-here>Learn more about these features here.</a>
-									</section>
-								</div>
-							</dialog>
-						</div>
 						<div class="checkbox-container"><input type="checkbox" data-key="pip" data-no-profile="true" data-default-value="true"><div class="checkbox-fill">✔</div></div>
+					</div>
+					<div id="pip-sub-settings" class="hidden">
+						<div class="checkbox-input sub-input custom-input"><div><div class="input-title">Display Board</div>
+							<div class="input-subtitle">Instead of just text, display the entire board</div></div><div class="checkbox-container">
+							<input type="checkbox" data-key="pipBoard" data-no-profile="true" data-default-value="false"><div class="checkbox-fill">✔</div></div>
+						</div>
+						<div class="setting-panel">
+							<div class="setting-panel-title" data-translation-ffs-videostream>Videostream</div>
+							<div id="floating-panel-video"></div>
+						</div>
 					</div>
 					<div id="restart-keybind-dropdown" class="dropdown-input custom-input"><div><div class="input-title">Restart Trigger</div>
 						<div class="input-subtitle">Restarts all instances, useful if they crash</div></div><div class="dropdown-input-container">

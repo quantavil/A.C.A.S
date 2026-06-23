@@ -130,30 +130,7 @@ function initializeFloatyButtons() {
             };
 
             const observer = new MutationObserver(() => {
-                if(!floatyDialog.open) {
-                    document.body.style.overflow = '';
-                    if (floatyDialog.id === 'floating-floaty') {
-                        const video = document.getElementById('pip-video-element');
-                        if (video) {
-                            video.style.position = 'absolute';
-                            video.style.left = '-9999px';
-                            video.style.top = '-9999px';
-                            video.style.pointerEvents = 'none';
-                            document.body.appendChild(video);
-                        }
-                    }
-                } else {
-                    if (floatyDialog.id === 'floating-floaty') {
-                        const video = document.getElementById('pip-video-element');
-                        if (video) {
-                            video.style.position = 'static';
-                            video.style.left = 'auto';
-                            video.style.top = 'auto';
-                            video.style.pointerEvents = 'auto';
-                            floatingPanelVideoElem.appendChild(video);
-                        }
-                    }
-                }
+                if(!floatyDialog.open) document.body.style.overflow = '';
             });
         
             observer.observe(floatyDialog, { attributes: true, attributeFilter: ['open'] });

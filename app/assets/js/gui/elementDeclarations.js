@@ -49,7 +49,6 @@ export const profileTabs = document.querySelector('#chess-engine-profile-tabs');
 export const floatyButtons = document.querySelectorAll('.open-floaty-btn');
 
 export const floatingPanelVideoElem = document.querySelector('#floating-panel-video');
-export const floatingFloaty = document.querySelector('#floating-floaty');
 export const togglePipBtn = document.querySelector('#toggle-pip-btn');
 
 export const advancedEloEnableInput = document.querySelector('input[data-key="enableAdvancedElo"]');

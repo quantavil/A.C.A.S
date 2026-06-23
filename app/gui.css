@@ -1688,3 +1688,45 @@ video {
     height: 0.8em;
     stroke-width: 3.5;
 }
+
+/* Picture-in-Picture inline sub-settings styles */
+#pip-sub-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#pip-sub-settings .setting-panel {
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 12px;
+    margin-left: 10px;
+    border-left: 2px solid rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    max-width: 100%;
+}
+
+#pip-sub-settings .setting-panel-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+#floating-panel-video {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    padding: 8px;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+#floating-panel-video video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+}

@@ -48,8 +48,8 @@ A.C.A.S/
 - **Icon Swaps & Close Buttons:** Corrected swapped SVGs in `icons.js` where `import` now points to down-arrow and `export` points to up-arrow. Added a standard `close` cross icon, changing all popup close buttons in `index.html` from the download-like `export` to `close` for an intuitive dialog layout.
 
 - **Lottie, Bootstrap Icons CDN, & Footer Removal**: Dropped bodymovin library, replaced with inline animated SVG loader in usage/index.html, and extended local icons.js with download, journals, tools, and chat-square-quote SVGs to replace Bootstrap Icons remote CDNs. Removed the bottom footer links and credit section from the app settings GUI.
-- **Floating Panel Piece Display:** Added `GET_PIECE_AT_SQUARE` to resolve piece type from FEN and displayed it next to move coordinates in Picture-in-Picture.
-- **One-Click Picture-in-Picture Button:** Added a "Launch Picture-in-Picture" button under the videostream inside the settings popup, triggering a user gesture to start PiP safely on both Chrome and Firefox.
+- **Floating Panel Settings Inline Integration:** Removed the `#floating-floaty` dialog settings modal entirely, moving the chess board videostream container and 'Display Board' checkbox inline, shown dynamically under `#pip-sub-settings` via setting changes.
+- **Firefox Picture-in-Picture & State Sync:** Prevented Firefox PiP termination by keeping the video element rendering inline in the DOM rather than off-screen/hidden. Integrated `enterpictureinpicture` and `leavepictureinpicture` listeners to sync state with the `pip` checkbox.
 
 ## Blunders
 - None logged yet.

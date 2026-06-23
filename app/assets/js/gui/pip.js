@@ -1,4 +1,4 @@
-import { floatingPanelVideoElem, floatingFloaty, pipBoardInput } from './elementDeclarations.js';
+import { floatingPanelVideoElem, pipBoardInput } from './elementDeclarations.js';
 import { setMediaMetadata } from './media.js';
 
 export const pipData = {};
@@ -290,9 +290,33 @@ export async function startPictureInPicture() {
     let width = 200, height = pipBoardInput.checked ? 200 : 100;
     const pipWidth = width * 2, pipHeight = height * 2;
 
-    const video = document.createElement('video');
-          video.width = width;
-          video.height = height;
+    let video = document.getElementById('pip-video-element');
+    
+    if (!video) {
+        video = document.createElement('video');
+        video.id = 'pip-video-element';
+        video.width = width;
+        video.height = height;
+
+        video.addEventListener('enterpictureinpicture', () => {
+            const pipCheckbox = document.querySelector('input[data-key="pip"]');
+            if (pipCheckbox && !pipCheckbox.checked) {
+                pipCheckbox.checked = true;
+                pipCheckbox.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+        });
+
+        video.addEventListener('leavepictureinpicture', () => {
+            const pipCheckbox = document.querySelector('input[data-key="pip"]');
+            if (pipCheckbox && pipCheckbox.checked) {
+                pipCheckbox.checked = false;
+                pipCheckbox.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+        });
+    } else {
+        video.width = width;
+        video.height = height;
+    }
 
     pipCanvas = document.createElement('canvas');
     pipCanvas.width = pipWidth;
@@ -301,29 +325,8 @@ export async function startPictureInPicture() {
     const stream = pipCanvas.captureStream();
     video.srcObject = stream;
 
-    video.id = 'pip-video-element';
-    document.getElementById('pip-video-element')?.remove();
-
-    if (floatingFloaty && floatingFloaty.open) {
-        video.style.position = 'static';
-        video.style.left = 'auto';
-        video.style.top = 'auto';
-        video.style.pointerEvents = 'auto';
-        floatingPanelVideoElem.innerHTML = '';
-        floatingPanelVideoElem.appendChild(video);
-    } else {
-        video.style.position = 'absolute';
-        video.style.left = '-9999px';
-        video.style.top = '-9999px';
-        video.style.width = `${width}px`;
-        video.style.height = `${height}px`;
-        video.style.pointerEvents = 'none';
-        document.body.appendChild(video);
-    }
-
-    if(!video.requestPictureInPicture && floatingPanelVideoElem) {
-        floatingFloaty.showModal();
-    }
+    floatingPanelVideoElem.innerHTML = '';
+    floatingPanelVideoElem.appendChild(video);
 
     const attemptPlay = async () => {
         try {
@@ -348,7 +351,6 @@ export async function startPictureInPicture() {
                 document.addEventListener('keydown', handleUserInteraction);
             } else {
                 console.error(err);
-                if (floatingPanelVideoElem) floatingFloaty.showModal();
             }
         }
     };

@@ -145,6 +145,12 @@ export function runSettingChangeObserver(inputElem, delayMs = 0, wasCalledByUpda
 
             break;
         case 'pip':
+            const subSettings = document.querySelector('#pip-sub-settings');
+            if (subSettings) {
+                if (value) subSettings.classList.remove('hidden');
+                else subSettings.classList.add('hidden');
+            }
+
             if(value && !document.pictureInPictureElement) startPictureInPicture();
             else if(!value) initMediaSession();
 
