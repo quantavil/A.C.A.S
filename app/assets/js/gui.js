@@ -1,6 +1,6 @@
 import { acasInstanceContainer, settingsNavbarGlobalElem, importSettingsBtn, exportSettingsBtn, resetSettingsBtn,
     noInstancesSitesElem, seeSupportedSitesBtn, ttsNameDropdownElem, userscriptInfoElem, updateYourUserscriptElem,
-    decreaseInstanceSizeBtn, increaseInstanceSizeBtn, addNewProfileBtn, floatyButtons, beggingFloaty, profileListContainerElem, launchPipBtn } from './gui/elementDeclarations.js';
+    decreaseInstanceSizeBtn, increaseInstanceSizeBtn, addNewProfileBtn, floatyButtons, beggingFloaty, profileListContainerElem, togglePipBtn, floatingPanelVideoElem } from './gui/elementDeclarations.js';
 import { importSettings, exportSettings, resetSettings } from './gui/settings.js';
 import { initializeDropdowns, addDropdownItem } from './gui/domDropdown.js';
 import { monitorInstances, monitorInstanceTabs, toggleSelectedNavbarItem } from './gui/instances.js';
@@ -130,7 +130,30 @@ function initializeFloatyButtons() {
             };
 
             const observer = new MutationObserver(() => {
-                if(!floatyDialog.open) document.body.style.overflow = '';
+                if(!floatyDialog.open) {
+                    document.body.style.overflow = '';
+                    if (floatyDialog.id === 'floating-floaty') {
+                        const video = document.getElementById('pip-video-element');
+                        if (video) {
+                            video.style.position = 'absolute';
+                            video.style.left = '-9999px';
+                            video.style.top = '-9999px';
+                            video.style.pointerEvents = 'none';
+                            document.body.appendChild(video);
+                        }
+                    }
+                } else {
+                    if (floatyDialog.id === 'floating-floaty') {
+                        const video = document.getElementById('pip-video-element');
+                        if (video) {
+                            video.style.position = 'static';
+                            video.style.left = 'auto';
+                            video.style.top = 'auto';
+                            video.style.pointerEvents = 'auto';
+                            floatingPanelVideoElem.appendChild(video);
+                        }
+                    }
+                }
             });
         
             observer.observe(floatyDialog, { attributes: true, attributeFilter: ['open'] });
@@ -190,14 +213,23 @@ export async function initGUI() {
     increaseInstanceSizeBtn.onclick = () => { changeBoardSizeModifier(0.1); }
     seeSupportedSitesBtn.onclick = () => { noInstancesSitesElem.classList.toggle('hidden'); }
     addNewProfileBtn.onclick = () => { createNewProfile(); }
-    if(launchPipBtn) {
-        launchPipBtn.onclick = () => {
-            const pipCheckbox = document.querySelector('input[data-key="pip"]');
-            if (pipCheckbox && !pipCheckbox.checked) {
-                pipCheckbox.checked = true;
-                pipCheckbox.dispatchEvent(new Event('change', { bubbles: true }));
+    if(togglePipBtn) {
+        togglePipBtn.onclick = () => {
+            if (document.pictureInPictureElement) {
+                document.exitPictureInPicture();
+                const pipCheckbox = document.querySelector('input[data-key="pip"]');
+                if (pipCheckbox && pipCheckbox.checked) {
+                    pipCheckbox.checked = false;
+                    pipCheckbox.dispatchEvent(new Event('change', { bubbles: true }));
+                }
             } else {
-                startPictureInPicture();
+                const pipCheckbox = document.querySelector('input[data-key="pip"]');
+                if (pipCheckbox && !pipCheckbox.checked) {
+                    pipCheckbox.checked = true;
+                    pipCheckbox.dispatchEvent(new Event('change', { bubbles: true }));
+                } else {
+                    startPictureInPicture();
+                }
             }
         };
     }

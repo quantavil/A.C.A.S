@@ -301,8 +301,25 @@ export async function startPictureInPicture() {
     const stream = pipCanvas.captureStream();
     video.srcObject = stream;
 
-    floatingPanelVideoElem.innerHTML = '';
-    floatingPanelVideoElem.appendChild(video);
+    video.id = 'pip-video-element';
+    document.getElementById('pip-video-element')?.remove();
+
+    if (floatingFloaty && floatingFloaty.open) {
+        video.style.position = 'static';
+        video.style.left = 'auto';
+        video.style.top = 'auto';
+        video.style.pointerEvents = 'auto';
+        floatingPanelVideoElem.innerHTML = '';
+        floatingPanelVideoElem.appendChild(video);
+    } else {
+        video.style.position = 'absolute';
+        video.style.left = '-9999px';
+        video.style.top = '-9999px';
+        video.style.width = `${width}px`;
+        video.style.height = `${height}px`;
+        video.style.pointerEvents = 'none';
+        document.body.appendChild(video);
+    }
 
     if(!document.pictureInPictureEnabled && floatingPanelVideoElem) {
         floatingFloaty.showModal();

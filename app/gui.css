@@ -736,6 +736,9 @@ body:has(#install-notification:not(.hidden)) #acas-instance-container {
     flex-wrap: wrap;
 	grid-gap: 10px;
 }
+#settings-header:has(#settings-navbar-container.hidden) {
+    justify-content: center;
+}
 #settings-control-panel {
 	display: flex;
 	flex-direction: row;
