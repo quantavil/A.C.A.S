@@ -1,6 +1,5 @@
 import { createInstance } from './instanceManager.js';
-import { installNotificationElem, autoMoveCheckbox, hiddenSettingPanel, tosCheckboxElem,
-    tosContinueBtnElem, tosContainerElem } from './gui/elementDeclarations.js';
+import { installNotificationElem, autoMoveCheckbox, hiddenSettingPanel } from './gui/elementDeclarations.js';
 import { highlightSettingElem, initGUI } from './gui.js';
 
 let started = false;
@@ -10,28 +9,6 @@ function displayNoUserscriptNotification(isEnable) {
         installNotificationElem.classList.add('hidden');
     else
         installNotificationElem.classList.remove('hidden');
-}
-
-function displayTOS() {
-    tosCheckboxElem.onchange = function() {
-        if(tosCheckboxElem.checked) {
-            tosContinueBtnElem.classList.add('active');
-            tosContinueBtnElem.removeAttribute('disabled');
-        } else {
-            tosContinueBtnElem.classList.remove('active');
-            tosContinueBtnElem.setAttribute('disabled', 'disabled');
-        }
-    }
-
-    tosContinueBtnElem.onclick = function() {
-        if(tosCheckboxElem.checked) {
-            USERSCRIPT.setValue(TOS_ACCEPTED_DB_KEY, true);
-            
-            setTimeout(() => location.search = '?t=' + Date.now(), 250);
-        }
-    }
-
-    tosContainerElem.classList.remove('hidden');
 }
 
 async function initDbValue(name, value) {
@@ -164,28 +141,11 @@ async function attemptStarting() {
         return;
 
     const isUserscriptActive = window.isUserscriptActive;
-    const isTosAccepted = isUserscriptActive
-        ? await USERSCRIPT.getValue(TOS_ACCEPTED_DB_KEY)
-        : false;
 
     if(isUserscriptActive) {
         started = true;
 
         displayNoUserscriptNotification(true);
-    }
-        
-    if(!isUserscriptActive) {
-        displayNoUserscriptNotification();
-
-    } else if(!isTosAccepted) {
-        displayNoUserscriptNotification(true); // failsafe
-        started = true; // failsafe
-
-        displayTOS();
-
-    } else {
-        displayNoUserscriptNotification(true); // failsafe
-        started = true; // failsafe
 
         initializeDatabase();
         initGUI();
@@ -193,6 +153,8 @@ async function attemptStarting() {
         startCommLink();
 
         console.log('Userscript ready! Listening to instance calls...');
+    } else {
+        displayNoUserscriptNotification();
     }
 }
 

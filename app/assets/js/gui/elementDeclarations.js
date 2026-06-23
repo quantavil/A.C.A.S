@@ -15,10 +15,6 @@ export const settingsInstanceDropdownContentElem = document.querySelector('#sett
 
 export const installNotificationElem = document.querySelector('#install-notification');
 
-export const tosContainerElem = document.querySelector('#tos-container');
-export const tosCheckboxElem = document.querySelector('#tos-checkbox');
-export const tosContinueBtnElem = document.querySelector('#tos-continue-button');
-
 export const importSettingsBtn = document.querySelector('#import-settings-btn');
 export const exportSettingsBtn = document.querySelector('#export-settings-btn');
 export const resetSettingsBtn = document.querySelector('#reset-settings-btn');

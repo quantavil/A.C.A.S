@@ -89,11 +89,17 @@ export default async function engineMessageProcessor(msg, profile) {
                 updatePipData({ 'depth': data?.depth, 'mate': data?.mate });
             }
 
-            if(data?.cp)
+            if(data?.cp) {
                 this.Interface.updateEval(data.cp, false, profile);
+                this.pV[profile].lastCp = Number(data.cp);
+                this.pV[profile].lastMate = null;
+            }
 
-            if(data?.mate) 
+            if(data?.mate) {
                 this.Interface.updateEval(data.mate, true, profile);
+                this.pV[profile].lastMate = Number(data.mate);
+                this.pV[profile].lastCp = null;
+            }
         }
     }
 

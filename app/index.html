@@ -52,28 +52,6 @@
 	<body>
 		<audio id="silence-audio" class="hidden" src="assets/audio/sound_of_silence.wav" autoplay loop controls></audio>
 
-		<!-- TOS CONTAINER-->
-		<div id="tos-container" class="hidden">
-			<div id="tos">
-				<!-- Introduction -->
-				<div id="tos-title">Welcome, my friend!</div>
-				<div class="tos-description">We're thrilled to have you here! A.C.A.S is all set and ready to provide you with a fantastic experience. Its circuits are already powered up and functioning, thanks to the userscript that has been installed.<br><br>You're fully equipped to explore and enjoy all the features and benefits that A.C.A.S brings to the table. Whether it's assistance, engagement, or a touch of fun you're seeking, A.C.A.S is here to serve you.</div>
-				<div class="language-dropdown-input"><div class="dropdown-input-container">
-					<img class="selected-language-img" src="../assets/images/flags/us.svg">
-					<div class="dropdown-list-container">
-					</div>
-				</div></div>
-				<br>
-				<div class="tos-checkbox-container">
-					<label class="tos-checkbox-label">
-						<input type="checkbox" id="tos-checkbox"/>
-						<span><a href="../tos" class="tos-link" target="_about">I have read and agree to the Terms of Service.</a></span>
-					</label>
-				</div>
-				<button id="tos-continue-button" class="acas-fancy-button" disabled>Kickstart A.C.A.S</button>
-				<div class="tos-footer-small">By using A.C.A.S, you confirm that you have read, understood, and agree to abide by the TOS.</div>
-			</div>
-		</div>
 
 		<!-- INSTALL NOTIFICATION -->
 		<div id="install-notification" class="hidden">
@@ -380,6 +358,18 @@
 													<div class="textfield-input custom-input"><div><div class="input-title">Search Nodes</div>
 														<div class="input-subtitle">More nodes means more thinking of the move by the engine</div></div>
 														<input type="textfield" data-key="engineNodes" data-default-value="0" data-between="0-99999999" placeholder="0">
+													</div>
+													<div class="checkbox-input custom-input"><div><div class="input-title">Adaptive Depth</div>
+														<div class="input-subtitle">Scale thinking depth based on evaluation score</div></div><div class="checkbox-container">
+														<input type="checkbox" data-key="enableAdaptiveDepth" data-default-value="false"><div class="checkbox-fill">✔</div></div>
+													</div>
+													<div class="textfield-input custom-input"><div><div class="input-title">Adaptive Min Depth (1 - 500)</div>
+														<div class="input-subtitle">Thinking depth when winning</div></div>
+														<input type="textfield" data-key="adaptiveDepthMin" data-default-value="6" data-between="1-500" placeholder="6">
+													</div>
+													<div class="textfield-input custom-input"><div><div class="input-title">Adaptive Max Depth (1 - 500)</div>
+														<div class="input-subtitle">Thinking depth when losing</div></div>
+														<input type="textfield" data-key="adaptiveDepthMax" data-default-value="14" data-between="1-500" placeholder="14">
 													</div>
 												</div>
 												<div id="dynamic-setting-panel" class="setting-panel">

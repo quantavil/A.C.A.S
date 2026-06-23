@@ -32,7 +32,8 @@ const configKeys = Object.freeze([
     'renderPieceEnemyCapture', 'renderOnExternalSite', 'feedbackOnExternalSite',
     'enableMoveRatings', 'enableEnemyFeedback', 'feedbackEngineDepth',
     'enableAdvancedElo', 'advancedEloDepth', 'moveAsFilledSquares',
-    'movesOnDemand', 'onlySuggestPieces', 'externalChessEngine'
+    'movesOnDemand', 'onlySuggestPieces', 'externalChessEngine',
+    'enableAdaptiveDepth', 'adaptiveDepthMin', 'adaptiveDepthMax'
 ].reduce((o, k) => (o[k] = k, o), {}));
 
 export default class AcasInstance {
@@ -131,6 +132,8 @@ export default class AcasInstance {
                 this.lastFeedbackFen = null;
 
                 this.usingAdvancedMode = null;
+                this.lastCp = null;
+                this.lastMate = null;
         
                 this.currentSpeeches = [];
             }
@@ -547,6 +550,8 @@ export default class AcasInstance {
 
     clearHistoryVariables(profileName) {
         this.pV[profileName].lastFen = null;
+        this.pV[profileName].lastCp = null;
+        this.pV[profileName].lastMate = null;
 
         this.moveHistory = [];
     }

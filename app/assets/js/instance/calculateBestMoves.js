@@ -35,6 +35,36 @@ export default async function calculateBestMoves(currentFen, config = {}) {
         if(this.isEngineCalculating(profileName)) return;
 
         const playerColor = await this.getPlayerColor();
+
+        const enableAdaptiveDepth = await this.getConfigValue(this.configKeys.enableAdaptiveDepth, profileName);
+        if (enableAdaptiveDepth) {
+            const adaptiveDepthMin = Number(await this.getConfigValue(this.configKeys.adaptiveDepthMin, profileName) ?? 6);
+            const adaptiveDepthMax = Number(await this.getConfigValue(this.configKeys.adaptiveDepthMax, profileName) ?? 14);
+
+            let lastCp = this.pV[profileName].lastCp;
+            let lastMate = this.pV[profileName].lastMate;
+
+            let relativeScore = null;
+            if (lastMate !== undefined && lastMate !== null) {
+                const multiplier = playerColor.toLowerCase() === 'b' ? -1 : 1;
+                relativeScore = (lastMate * multiplier) > 0 ? 5 : -5;
+            } else if (lastCp !== undefined && lastCp !== null) {
+                const multiplier = playerColor.toLowerCase() === 'b' ? -1 : 1;
+                relativeScore = (lastCp / 100) * multiplier;
+            }
+
+            let calculatedDepth;
+            if (relativeScore === null) {
+                calculatedDepth = Math.round((adaptiveDepthMin + adaptiveDepthMax) / 2);
+            } else {
+                const clampedScore = Math.max(-5, Math.min(5, relativeScore));
+                const t = (clampedScore - (-5)) / 10;
+                calculatedDepth = Math.round(adaptiveDepthMax - t * (adaptiveDepthMax - adaptiveDepthMin));
+            }
+
+            this.pV[profileName].searchDepth = calculatedDepth;
+        }
+
         const reverseSide = await this.getConfigValue(this.configKeys.reverseSide, profileName);
         const isAttackingPlayerColor = reverseSide
             ? playerColor.toLowerCase() === 'w' ? 'b' : 'w'

@@ -236,6 +236,25 @@ export function runSettingChangeObserver(inputElem, delayMs = 0, wasCalledByUpda
             }
 
             break;
+        case 'enableAdaptiveDepth':
+            const adaptiveMinInput = document.querySelector('input[data-key="adaptiveDepthMin"]');
+            const adaptiveMaxInput = document.querySelector('input[data-key="adaptiveDepthMax"]');
+            if(adaptiveMinInput && adaptiveMaxInput) {
+                if(value) {
+                    adaptiveMinInput.parentElement.style.opacity = '1';
+                    adaptiveMaxInput.parentElement.style.opacity = '1';
+                    advancedEloDepthInput.parentElement.style.opacity = '0.3';
+                    engineNodesInput.parentElement.style.opacity = '0.3';
+                } else {
+                    adaptiveMinInput.parentElement.style.opacity = '0.3';
+                    adaptiveMaxInput.parentElement.style.opacity = '0.3';
+                    advancedEloDepthInput.parentElement.style.opacity = '1';
+                    const nodesValue = document.querySelector('input[data-key="engineNodes"]')?.value;
+                    engineNodesInput.parentElement.style.opacity = nodesValue === '0' ? '0.3' : '1';
+                }
+            }
+
+            break;
     }
 
     processedElems.push([inputElem, value]);

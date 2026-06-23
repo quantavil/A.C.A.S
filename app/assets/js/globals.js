@@ -20,8 +20,6 @@ const BOARD_SIZE_MODIFIER_KEY = 'boardSizeModifier';
 const CONCEAL_ASSISTANCE_ACTIVE_KEY = 'concealAssistanceActive';
 const CONCEAL_ASSISTANCE_DELAY_KEY = 'concealAssistanceAutoDelayMs';
 
-const TOS_ACCEPTED_DB_KEY = 'isTosAccepted';
-
 const GUI_BROADCAST_NAME = 'gui';
 const EXTERNAL_UCI_BROADCAST_NAME = 'externalEngineUciFeed';
 const EXTERNAL_STATUS_BROADCAST_NAME = 'externalEngineStatusFeed';
