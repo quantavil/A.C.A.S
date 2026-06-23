@@ -1,141 +1,196 @@
 #acas-toast-container {
     display: flex;
-    width: 100%;
-    height: fit-content;
+    flex-direction: column;
+    gap: 8px;
+    width: 320px;
+    max-width: calc(100vw - 32px);
     position: fixed;
-    bottom: 50px;
-    flex-direction: column-reverse;
-    align-items: center;
-    justify-content: center;
+    top: 20px;
+    right: 20px;
     z-index: 9999999999;
     pointer-events: none;
 }
+
+@media (max-width: 480px) {
+    #acas-toast-container {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        width: auto;
+        max-width: none;
+    }
+}
+
 .acas-toast {
-    min-width: 250px;
-    max-width: 50%;
-    color: #000;
-    border-radius: 5px;
-    z-index: 9999999999;
-    width: fit-content;
-    margin-bottom: 5px;
-    display: flex;
-    flex-direction: column;
+    min-width: 220px;
+    color: #e4e4e7;
+    background-color: #29292e;
+    border: 1px solid #3f3f46;
+    border-radius: 6px;
+    padding: 10px 32px 10px 12px;
     position: relative;
     overflow: hidden;
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
     pointer-events: all;
-    box-shadow: 5px 5px 5px 5px rgb(0 0 0 / 20%);
-}
-.acas-toast-top-container {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 10px 10px 10px 0;
-    background: linear-gradient(to bottom right, rgb(255 255 255), rgb(255 255 255 / 50%));
+    gap: 10px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    animation: acas-toast-fadein 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
-.acas-toast-bottom-container {
-    height: 6px;
-    width: 100%;
+
+.acas-toast-fadeout {
+    animation: acas-toast-fadeout 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.acas-toast-pulse {
+    animation: acas-toast-pulse 0.25s ease-in-out;
+}
+
+.acas-toast-success {
+    border-left: 3px solid #10b981;
+}
+
+.acas-toast-message {
+    border-left: 3px solid #3b82f6;
+}
+
+.acas-toast-warning {
+    border-left: 3px solid #f59e0b;
+}
+
+.acas-toast-error {
+    border-left: 3px solid #ef4444;
+}
+
+.acas-toast-instance {
+    border-left: 3px solid #a1a1aa;
+}
+
+.acas-toast-icon {
+    font-size: 16px;
+    width: 20px;
+    height: 20px;
     display: flex;
+    align-content: center;
     align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    line-height: 1;
 }
-.acas-toast-progress-bar {
-    height: 4px;
-    background-color: rgb(255 255 255 / 75%);
-    transition: width 0.5s ease;
-    border-radius: 10px;
+
+.acas-toast-content {
+    text-align: left;
+    font-size: 13px;
+    line-height: 1.4;
+    word-break: break-word;
+    font-family: system-ui, -apple-system, sans-serif;
+    flex-grow: 1;
+}
+
+.acas-toast-content small {
+    display: block;
+    font-size: 11px;
+    opacity: 0.7;
     margin-top: 2px;
-    margin-bottom: 2px;
 }
+
 .acas-toast-close-btn {
-    width: 10px;
-    background-color: grey;
-    transition: all 0.25s;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 18px;
+    height: 18px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    font-size: 10px;
+    color: #a1a1aa;
+    opacity: 0.6;
+    background: transparent;
+    border: none;
+    border-radius: 3px;
+    transition: opacity 0.2s, background-color 0.2s, color 0.2s;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.acas-toast-close-btn:hover {
+    opacity: 1;
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.acas-toast-close-btn.highlight {
+    background-color: #f59e0b;
+    color: #1f1f23;
+    opacity: 1;
+}
+
+.acas-toast-progress-container {
     position: absolute;
-    top: 0;
-    bottom: 6px;
-    font-size: 15px;
-    font-stretch: semi-expanded;
-    font-weight: 800;
-    color: transparent;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.05);
 }
-.acas-toast-icon {
-    font-size: 25px;
-    margin-left: 18px;
-    margin-right: 10px;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-content: center;
-    align-items: center;
+
+.acas-toast-progress-bar {
+    height: 100%;
+    width: 0%;
+    transition: width 0.1s linear;
 }
-.acas-toast-content {
-    text-align: left;
-    font-size: 17px;
-    word-break: break-word;
+
+.acas-toast-success .acas-toast-progress-bar {
+    background-color: #10b981;
 }
-.acas-toast:hover .acas-toast-close-btn {
-    color: white;
-    width: 50px;
+
+.acas-toast-message .acas-toast-progress-bar {
+    background-color: #3b82f6;
 }
-.acas-toast-success {
-    background-color: #35b334;
+
+.acas-toast-warning .acas-toast-progress-bar {
+    background-color: #f59e0b;
 }
-.acas-toast-message {
-    background-color: #24A0ED;
+
+.acas-toast-error .acas-toast-progress-bar {
+    background-color: #ef4444;
 }
-.acas-toast-warning {
-    background-color: #ff9100;
+
+.acas-toast-instance .acas-toast-progress-bar {
+    background-color: #a1a1aa;
 }
-.acas-toast-error {
-    background-color: #ff0000;
-}
-.acas-toast-instance {
-    background-color: #5f8895;
-    transition: all 0.5s ease;
-}
-@-webkit-keyframes fadein {
+
+@keyframes acas-toast-fadein {
     from {
-        margin-bottom: -50px;
+        transform: translateY(-20px);
         opacity: 0;
-   }
+    }
     to {
-        margin-bottom: 5px;
+        transform: translateY(0);
         opacity: 1;
-   }
+    }
 }
-@keyframes fadein {
+
+@keyframes acas-toast-fadeout {
     from {
-        margin-bottom: -50px;
-        opacity: 0;
-   }
-    to {
-        margin-bottom: 5px;
+        transform: translateY(0);
         opacity: 1;
-   }
+    }
+    to {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
 }
-@-webkit-keyframes fadeout {
-    from {
-        margin-bottom: 5px;
-        opacity: 1;
-   }
-    to {
-        margin-bottom: -50px;
-        opacity: 0;
-   }
-}
-@keyframes fadeout {
-    from {
-        margin-bottom: 5px;
-        opacity: 1;
-   }
-    to {
-        margin-bottom: -50px;
-        opacity: 0;
-   }
+
+@keyframes acas-toast-pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.03);
+    }
 }

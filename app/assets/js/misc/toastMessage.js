@@ -1,12 +1,30 @@
+const activeToasts = [];
+
+const defaultDurations = {
+    'success': 1500,
+    'message': 2000,
+    'warning': 2500,
+    'error': 3000,
+    'instance': 30000
+};
+
 const toast = {
     'create': (type, icon, content, duration) => {
         const intervalRate = 100;
-        const toastTotalDuration = duration;
+        let toastTotalDuration = duration || defaultDurations[type] || 2000;
         let toastContainer = document.querySelector('#acas-toast-container');
-        let fadeTime = 500;
+        let fadeTime = 300;
         let elapsedTime = 0;
         let isHovered = false;
         let loadingSpinnerInterval;
+        let customTimeout;
+
+        // Deduplication Check
+        const duplicate = activeToasts.find(t => t.type === type && t.content === content);
+        if (duplicate) {
+            duplicate.reset(duration);
+            return { 'close': duplicate.close };
+        }
 
         if(!toastContainer) {
             toastContainer = document.createElement('div');
@@ -15,31 +33,19 @@ const toast = {
         }
 
         const toastElem = document.createElement('div');
-        toastElem.classList.add('acas-toast');
-        toastElem.style = `
-            -webkit-animation: fadein ${fadeTime / 1000}s forwards;
-            animation: fadein ${fadeTime / 1000}s forwards;
-        `;
+        toastElem.className = `acas-toast acas-toast-${type}`;
 
         function triggerFadeOut() {
-            toastElem.style.animation = `fadeout ${fadeTime / 1000}s forwards`;
+            // Remove from activeToasts list
+            const index = activeToasts.indexOf(toastObj);
+            if (index !== -1) {
+                activeToasts.splice(index, 1);
+            }
+            if (customTimeout) clearInterval(customTimeout);
+            if (loadingSpinnerInterval) clearInterval(loadingSpinnerInterval);
+            toastElem.classList.add('acas-toast-fadeout');
             setTimeout(() => toastElem.remove(), fadeTime);
         }
-
-        const toastTopContainer = document.createElement('div');
-        toastTopContainer.classList.add('acas-toast-top-container');
-
-        const toastBottomContainer = document.createElement('div');
-        toastBottomContainer.classList.add('acas-toast-bottom-container');
-
-        const progressBarElem = document.createElement('div');
-        progressBarElem.classList.add('acas-toast-progress-bar');
-
-        const closeBtn = document.createElement('div');
-        closeBtn.classList.add(`acas-toast-${type}`);
-        closeBtn.classList.add('acas-toast-close-btn');
-        closeBtn.innerHTML = '✕';
-        closeBtn.onclick = () => toastElem.remove();
 
         const iconElem = document.createElement('div');
         iconElem.classList.add('acas-toast-icon');
@@ -55,14 +61,21 @@ const toast = {
         contentElem.classList.add('acas-toast-content');
         contentElem.innerText = content;
 
-        toastElem.appendChild(toastTopContainer);
-        toastElem.appendChild(toastBottomContainer);
+        const closeBtn = document.createElement('button');
+        closeBtn.classList.add('acas-toast-close-btn');
+        closeBtn.innerHTML = '✕';
+        closeBtn.onclick = () => triggerFadeOut();
 
-        toastTopContainer.appendChild(closeBtn);
-        toastTopContainer.appendChild(iconElem);
-        toastTopContainer.appendChild(contentElem);
+        const progressContainer = document.createElement('div');
+        progressContainer.classList.add('acas-toast-progress-container');
+        const progressBarElem = document.createElement('div');
+        progressBarElem.classList.add('acas-toast-progress-bar');
+        progressContainer.appendChild(progressBarElem);
 
-        toastBottomContainer.appendChild(progressBarElem);
+        toastElem.appendChild(iconElem);
+        toastElem.appendChild(contentElem);
+        toastElem.appendChild(closeBtn);
+        toastElem.appendChild(progressContainer);
 
         toastElem.addEventListener('mouseenter', () => {
             isHovered = true;
@@ -71,25 +84,40 @@ const toast = {
             isHovered = false;
         });
 
-        const customTimeout = setInterval(() => {
-            if(!document.body.contains(toastElem)) {
-                clearInterval(customTimeout);
-                clearInterval(loadingSpinnerInterval);
-                return;
-            }
+        function startTimer() {
+            if (customTimeout) clearInterval(customTimeout);
+            customTimeout = setInterval(() => {
+                if(!document.body.contains(toastElem)) {
+                    clearInterval(customTimeout);
+                    if (loadingSpinnerInterval) clearInterval(loadingSpinnerInterval);
+                    return;
+                }
 
-            if(isHovered) return;
+                if(isHovered) return;
 
-            if(toastTotalDuration + fadeTime <= elapsedTime) {
-                clearInterval(customTimeout);
-                clearInterval(loadingSpinnerInterval);
-                triggerFadeOut();
-            } else {
-                elapsedTime += intervalRate;
-                const progressPercent = `${Math.ceil(elapsedTime/toastTotalDuration * 100)}%`;
-                progressBarElem.style.width = progressPercent;
+                if(toastTotalDuration <= elapsedTime) {
+                    clearInterval(customTimeout);
+                    if (loadingSpinnerInterval) clearInterval(loadingSpinnerInterval);
+                    triggerFadeOut();
+                } else {
+                    elapsedTime += intervalRate;
+                    const progressPercent = `${Math.min(100, Math.ceil(elapsedTime / toastTotalDuration * 100))}%`;
+                    progressBarElem.style.width = progressPercent;
+                }
+            }, intervalRate);
+        }
+
+        function reset(newDuration) {
+            elapsedTime = 0;
+            if (newDuration) {
+                toastTotalDuration = newDuration;
             }
-        }, intervalRate);
+            toastElem.classList.remove('acas-toast-pulse');
+            void toastElem.offsetWidth; // Force layout reflow to restart animation
+            toastElem.classList.add('acas-toast-pulse');
+            progressBarElem.style.width = '0%';
+            startTimer();
+        }
 
         if(type === 'instance') {
             const spinner = ['🕛','🕐','🕑','🕒','🕓','🕔','🕕','🕖','🕗','🕘','🕙','🕚'];
@@ -108,17 +136,25 @@ const toast = {
                 if(elapsed === (200 * 40)) {
                     const sMsg = TRANS_OBJ?.dependingOnNetworkSpeed ?? 'Depending on your network speed, it might take a while for the engine to load...';
                     const small = document.createElement('small');
-                          small.style = 'opacity: 0.8;';
-                          small.innerText = `\n(${sMsg})`;
+                    small.innerText = `(${sMsg})`;
 
-                    closeBtn.style.backgroundColor = 'rgb(255 149 41)';
-
+                    closeBtn.classList.add('highlight');
                     contentElem.appendChild(small);
                 }
             }, 200);
         }
 
         toastContainer.prepend(toastElem);
+        startTimer();
+
+        const toastObj = {
+            type,
+            content,
+            elem: toastElem,
+            reset,
+            close: triggerFadeOut
+        };
+        activeToasts.push(toastObj);
 
         return { 'close': triggerFadeOut };
     },
