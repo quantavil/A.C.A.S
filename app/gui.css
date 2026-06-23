@@ -746,7 +746,7 @@ body:has(#install-notification:not(.hidden)) #acas-instance-container {
     display: flex;
     transition: all 0.1s ease;
     padding: 10px;
-    opacity: 0.4;
+    opacity: 1;
     justify-content: space-between;
     flex-direction: row;
     box-sizing: border-box;
@@ -792,7 +792,7 @@ body:has(#install-notification:not(.hidden)) #acas-instance-container {
     display: flex;
     justify-content: flex-start;
     transition: all 0.1s ease;
-    opacity: 0.4;
+    opacity: 1;
     box-sizing: border-box;
     width: 100%;
     flex-wrap: wrap;
@@ -836,10 +836,6 @@ body:has(#install-notification:not(.hidden)) #acas-instance-container {
 	margin-bottom: 10px;
 	padding-bottom: 10px;
 	border-bottom: 2px solid rgba(255, 255, 255, 0.05);
-}
-#acas-settings-container:hover #settings-header,
-#acas-settings-container:hover #setting-container {
-	opacity: 1;
 }
 #settings-header #settings-navbar-global,
 #settings-navbar-instance {
@@ -1234,12 +1230,9 @@ body:has(#install-notification:not(.hidden)) #acas-instance-container {
     box-sizing: border-box;
     flex-wrap: wrap;
     gap: 10px;
-    opacity: 0.4;
+    opacity: 1;
     max-width: 100%;
     width: calc(100% - 20px);
-}
-#main-setting-panel:hover #settings-panels {
-	opacity: 1;
 }
 .wide-text-input {
 	width: 200px !important;
