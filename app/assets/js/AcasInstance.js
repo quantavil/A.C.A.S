@@ -27,6 +27,7 @@ const configKeys = Object.freeze([
     'secondaryArrowColorHex', 'opponentArrowColorHex', 'reverseSide',
     'engineEnabled', 'autoMove', 'autoMoveLegit',
     'autoMoveRandom', 'autoMoveAfterUser', 'legitModeType',
+    'moveMethod',
     'moveDisplayDelay', 'renderSquarePlayer', 'renderSquareEnemy',
     'renderSquareContested', 'renderSquareSafe', 'renderPiecePlayerCapture',
     'renderPieceEnemyCapture', 'renderOnExternalSite', 'feedbackOnExternalSite',

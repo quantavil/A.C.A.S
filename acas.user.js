@@ -1048,10 +1048,21 @@ class AutomaticMove {
     }
     await this.delay(20);
     const steps = 10;
+    const useCurve = this.isLegit;
+    const jitter = useCurve ? (Math.random() - 0.5) * 0.35 : 0;
+    const p1x = useCurve ? (xStart + xEnd) / 2 + (yStart - yEnd) * jitter : 0;
+    const p1y = useCurve ? (yStart + yEnd) / 2 + (xEnd - xStart) * jitter : 0;
     for (let i = 1;i <= steps; i++) {
       const t = i / steps;
-      const mx = xStart + (xEnd - xStart) * t;
-      const my = yStart + (yEnd - yStart) * t;
+      let mx, my;
+      if (useCurve) {
+        const mt = 1 - t;
+        mx = mt * mt * xStart + 2 * mt * t * p1x + t * t * xEnd;
+        my = mt * mt * yStart + 2 * mt * t * p1y + t * t * yEnd;
+      } else {
+        mx = xStart + (xEnd - xStart) * t;
+        my = yStart + (yEnd - yStart) * t;
+      }
       const stepTarget = document.elementFromPoint(mx, my) || startEl;
       const moveOpts = pointerEventOptions(mx, my, 1);
       if (usePointer) {
@@ -1090,7 +1101,10 @@ class AutomaticMove {
     this.finishMove(this.toSquareSelectDelay, this.promotionDelay);
   }
   async finishMove(delay01, delay02) {
-    const moveMethod = getConfigValue("moveMethod", this.profile) || "click";
+    let moveMethod = getConfigValue("moveMethod", this.profile) || "click";
+    if (moveMethod === "natural") {
+      moveMethod = Math.random() < 0.5 ? "click" : "drag";
+    }
     if (moveMethod === "drag") {
       await this.delay(delay01);
       await this.drag(this.moveDomCoords[0], this.moveDomCoords[1]);
