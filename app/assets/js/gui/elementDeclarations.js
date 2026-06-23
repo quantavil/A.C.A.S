@@ -50,6 +50,7 @@ export const floatyButtons = document.querySelectorAll('.open-floaty-btn');
 
 export const floatingPanelVideoElem = document.querySelector('#floating-panel-video');
 export const floatingFloaty = document.querySelector('#floating-floaty');
+export const launchPipBtn = document.querySelector('#launch-pip-btn');
 
 export const advancedEloEnableInput = document.querySelector('input[data-key="enableAdvancedElo"]');
 export const normalEloInput = document.querySelector('input[data-key="engineElo"]');

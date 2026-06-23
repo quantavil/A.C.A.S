@@ -49,6 +49,7 @@ A.C.A.S/
 
 - **Lottie, Bootstrap Icons CDN, & Footer Removal**: Dropped bodymovin library, replaced with inline animated SVG loader in usage/index.html, and extended local icons.js with download, journals, tools, and chat-square-quote SVGs to replace Bootstrap Icons remote CDNs. Removed the bottom footer links and credit section from the app settings GUI.
 - **Floating Panel Piece Display:** Added `GET_PIECE_AT_SQUARE` to resolve piece type from FEN and displayed it next to move coordinates in Picture-in-Picture.
+- **One-Click Picture-in-Picture Button:** Added a "Launch Picture-in-Picture" button under the videostream inside the settings popup, triggering a user gesture to start PiP safely on both Chrome and Firefox.
 
 ## Blunders
 - None logged yet.

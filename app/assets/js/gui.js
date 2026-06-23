@@ -1,6 +1,6 @@
 import { acasInstanceContainer, settingsNavbarGlobalElem, importSettingsBtn, exportSettingsBtn, resetSettingsBtn,
     noInstancesSitesElem, seeSupportedSitesBtn, ttsNameDropdownElem, userscriptInfoElem, updateYourUserscriptElem,
-    decreaseInstanceSizeBtn, increaseInstanceSizeBtn, addNewProfileBtn, floatyButtons, beggingFloaty, profileListContainerElem } from './gui/elementDeclarations.js';
+    decreaseInstanceSizeBtn, increaseInstanceSizeBtn, addNewProfileBtn, floatyButtons, beggingFloaty, profileListContainerElem, launchPipBtn } from './gui/elementDeclarations.js';
 import { importSettings, exportSettings, resetSettings } from './gui/settings.js';
 import { initializeDropdowns, addDropdownItem } from './gui/domDropdown.js';
 import { monitorInstances, monitorInstanceTabs, toggleSelectedNavbarItem } from './gui/instances.js';
@@ -190,6 +190,17 @@ export async function initGUI() {
     increaseInstanceSizeBtn.onclick = () => { changeBoardSizeModifier(0.1); }
     seeSupportedSitesBtn.onclick = () => { noInstancesSitesElem.classList.toggle('hidden'); }
     addNewProfileBtn.onclick = () => { createNewProfile(); }
+    if(launchPipBtn) {
+        launchPipBtn.onclick = () => {
+            const pipCheckbox = document.querySelector('input[data-key="pip"]');
+            if (pipCheckbox && !pipCheckbox.checked) {
+                pipCheckbox.checked = true;
+                pipCheckbox.dispatchEvent(new Event('change', { bubbles: true }));
+            } else {
+                startPictureInPicture();
+            }
+        };
+    }
     beggingFloaty.onclick = e => {
         if(e.target === beggingFloaty) beggingFloaty.close();
     };
