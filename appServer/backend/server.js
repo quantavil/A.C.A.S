@@ -9,7 +9,7 @@ import { findAliveEngineObj, updateAliveEngineObjFen, killAllBy,
 const PORT = 2800;
 const ALLOWED_ORIGIN = [
     'http://localhost',
-    'https://psyyke.github.io'
+    'https://quantavil.github.io'
 ];
 
 const clients = new Set();

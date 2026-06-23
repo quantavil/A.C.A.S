@@ -1,6 +1,6 @@
 # Local Calculation Server (for A.C.A.S)
 
-Please visit the GitHub for more details: https://github.com/Psyyke/A.C.A.S
+Please visit the GitHub for more details: https://github.com/quantavil/A.C.A.S
 
 This file basically just lists the LICENSE and the dependencies A.C.A.S might use.
 

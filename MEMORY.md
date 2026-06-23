@@ -44,6 +44,8 @@ A.C.A.S/
   - Audit details preserved in [codebase_audit.md](file:///home/quantavil/.gemini/antigravity-cli/brain/0bcff703-dd9a-420d-91ca-458862b3feed/codebase_audit.md).
 - **Stealth & Automation Alignment:** Merged the Miscellaneous settings panel directly into the newly named "Stealth & Automation" panel using a horizontal separator, correcting the settings DOM container layout hierarchy.
 - **Warm Charcoal & Flat Refinements:** Lifted overall illumination by shifting base darks to warm charcoal (`#1f1f23`, `#29292e`, `#323238`) and borders to crisp slate (`#3f3f46`). Removed thick bottom borders and glassmorphism blurs on popups/dropdowns, replacing them with flat styling, custom shadow depth, and smooth modal entrance animations.
+- **Subpage Depletions & Link Alignment:** Completely deleted the obsolete `blog` and `contributing` pages and removed all corresponding links/buttons in headers/footers. Corrected all case-insensitive `Psyyke` repository references in links, canonical URLs, and configuration files to point to the correct owner `quantavil`.
+- **Icon Swaps & Close Buttons:** Corrected swapped SVGs in `icons.js` where `import` now points to down-arrow and `export` points to up-arrow. Added a standard `close` cross icon, changing all popup close buttons in `index.html` from the download-like `export` to `close` for an intuitive dialog layout.
 
 ## Blunders
 - None logged yet.
