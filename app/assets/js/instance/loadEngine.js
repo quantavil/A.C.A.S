@@ -320,9 +320,6 @@ export default async function loadEngine(profileName, engineName, attempt = 0) {
             loadStockfish.bind(this)('stockfish-17-lite-single');
             break;
 
-        case 'stockfish-16-1-wasm':
-            loadLilaStockfish.bind(this)('16-0-worker', 'stockfish-16-1-wasm');
-            break;
 
         case 'stockfish-11':
             loadStockfish.bind(this)('stockfish-11');

@@ -1,0 +1,47 @@
+# Project: A.C.A.S (Advanced Chess Assistance System)
+
+## Overview
+A.C.A.S is an open-source, multi-engine, multi-variant chess assistance system. It operates as a web-based UI/GUI communicating with a userscript (`acas.user.js`) that runs in separate tabs of chess websites (e.g., chess.com, lichess.org) via CommLink (cross-window postMessage communication). It supports built-in WASM chess engines (Stockfish, Fairy Stockfish, Lc0, Maia) and external UCI engines via a Node.js/Electron localhost server (`appServer`).
+
+## Structure
+A.C.A.S/
+├── acas.user.js           # Userscript loaded into chess website tabs
+├── index.html             # Landing page / redirection to the app
+├── app/                   # Main GUI application code
+│   ├── index.html         # Main GUI frontend
+│   ├── gui.css            # Styles for the GUI
+│   └── assets/            # Static assets and frontend JavaScript logic
+│       ├── js/            # GUI engine & interface coordinators
+│       │   ├── globals.js            # Shared global state, settings templates, utility logic
+│       │   ├── AcasInstance.js       # Repr. of an engine instance and its coordination
+│       │   ├── gui.js                # Core GUI DOM operations
+│       │   ├── gui/                  # Submodules for input/dropdown/setting UI mapping
+│       │   ├── instance/             # Submodules for WASM engine communication and calculations
+│       │   └── misc/                 # Utility scripts (e.g. userscript bridge, icons.js)
+│       └── engines/       # WASM engine binaries and wrappers
+└── appServer/             # Node.js/Electron localhost desktop server for external engines
+    ├── backend/           # Server-side WebSocket / UCI engine controller
+    └── ui/                # Dev/monitoring interface for the localhost server
+
+## Conventions
+- **GUI & Engine separation**: Chess engine execution runs in a separate browser tab/process (GUI) from the chess site, avoiding detection and cross-origin resource limitations.
+- **CommLink communication**: GUI and userscript exchange board states and calculated move suggestions via CommLink.
+- **Modular components inside app/assets/js**: Code is split into logical modules (e.g., instances, gui controls, rendering feedbacks, metrics calculations).
+
+## Dependencies & Setup
+- Built-in WASM chess engines require Cross-Origin Opener Policy (COOP) and Cross-Origin Embedder Policy (COEP) headers (provided by `coi-serviceworker.js` for GitHub Pages).
+- Localhost engine server (`appServer`) runs a Node.js script using `ws` (WebSockets) and optionally Electron.
+
+## Critical Information
+- Expect variants support bugs (especially on Fairy Stockfish).
+- Do not run calculations in the main userscript thread to prevent page lag and cheat-detection triggers on chess websites.
+
+## Insights
+- **Audit & Implementation Findings:** Performed a codebase audit and implemented design realignments:
+  - Deleted Stockfish 16 binary assets (`sf16-7.js`/`sf16-7.wasm`/`16-0-worker.js`) to remove bloat, leaving SF 17 and 18 options.
+  - Revamped UI styling from gamified blue-gray layout to a premium dark-bone monochromatic dashboard (`#0b0f19`/`#16161a`) with tactile spring click micro-interactions.
+  - Decoupled from remote Bootstrap Icons CDN; created local SVG icon registry [icons.js](file:///home/quantavil/Documents/Project/A.C.A.S/app/assets/js/misc/icons.js) with dynamic checkmark inject actions.
+  - Audit details preserved in [codebase_audit.md](file:///home/quantavil/.gemini/antigravity-cli/brain/0bcff703-dd9a-420d-91ca-458862b3feed/codebase_audit.md).
+
+## Blunders
+- None logged yet.

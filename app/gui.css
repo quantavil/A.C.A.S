@@ -109,9 +109,10 @@
 	}
 }
 body {
-	font-family: "Rubik", "IBM Plex Sans", "Mona Sans", sans-serif;
+	font-family: "Mona Sans", "Rubik", "IBM Plex Sans", sans-serif;
 	margin: 0;
-	background-color: #5f8895;
+	background-color: #0b0f19;
+	color: #e4e4e7;
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
@@ -159,15 +160,14 @@ cg-container {
 }
 #acas-header {
 	padding: 15px 20px 20px;
-	background-color: rgb(0 0 0 / 70%);
+	background-color: #121214;
 	height: 50px;
 	display: flex;
 	justify-content: space-between;
     z-index: 1000;
     position: sticky;
     top: 0;
-	backdrop-filter: blur(10px);
-	border-bottom: 4px solid rgb(0 0 0 / 35%);
+	border-bottom: 1px solid #27272a;
 }
 #acas-logo {
 	font-size: 30px;
@@ -234,11 +234,11 @@ cg-container {
 	height: fit-content;
 	position: relative;
 	flex-direction: column;
-	border-radius: 10px;
+	border-radius: 6px;
 	transition: all 150ms ease;
 	z-index: 10;
-	border: 2px solid rgb(255 255 255 / 25%);
-	border-bottom-width: 5px;
+	border: 1px solid #27272a;
+	background-color: #16161a;
 }
 #acas-instance-container {
 	display: flex;
@@ -254,9 +254,9 @@ cg-container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: rgb(0 0 0 / 56%);
-	padding: 10px 20px 20px 20px;
-	border-radius: 0 0 5px 5px;
+	background-color: #1a1a1e;
+	padding: 16px 20px 20px 20px;
+	border-radius: 0 0 6px 6px;
 }
 .assistance-concealment-active {
     opacity: 0.8 !important;
@@ -611,18 +611,17 @@ body:has(#install-notification:not(.hidden)) #acas-instance-container {
 	display: none !important;
 }
 #no-instances-container {
-    background: linear-gradient(to bottom, rgb(0 0 0 / 5%), rgb(0 0 0 / 20%));
-	color: rgb(255 255 255 / 75%);
-	padding: 30px 10px 10px 10px;
+    background-color: #16161a;
+	color: #e4e4e7;
+	padding: 40px 24px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	border-radius: 5px;
+	border-radius: 6px;
 	width: 500px;
 	text-align: center;
 	z-index: 5;
-	backdrop-filter: blur(20px);
-	border: 2px solid rgb(255 255 255 / 33%);
+	border: 1px solid #27272a;
 }
 #no-instances-title {
     font-size: 28px;
@@ -713,13 +712,13 @@ body:has(#install-notification:not(.hidden)) #acas-instance-container {
 #acas-settings-container {
 	display: flex;
 	height: fit-content;
-	background-color: rgb(0 0 0 / 50%);
-	color: white;
+	background-color: #121214;
+	color: #e4e4e7;
 	flex-direction: column;
 	align-items: flex-start;
 	flex-grow: 1;
 	z-index: 10;
-	border-bottom: 3px solid rgb(255 255 255 / 5%);
+	border-bottom: 1px solid #27272a;
 }
 #settings-navbar {
 	width: fit-content;
@@ -825,12 +824,11 @@ body:has(#install-notification:not(.hidden)) #acas-instance-container {
 	color: rgb(255, 255, 255, 0.75);
 }
 .setting-panel {
-	background-color: rgb(0 0 0 / 20%);
-	border-radius: 5px;
+	background-color: #16161a;
+	border-radius: 6px;
 	padding: 20px;
-	border: 2px solid rgb(255 255 255 / 10%);
+	border: 1px solid #27272a;
 	max-width: 300px;
-	border-bottom-width: 5px;
 }
 .setting-panel>*:not(:last-child) {
 	margin-bottom: 10px;
@@ -1688,4 +1686,38 @@ video {
     filter: blur(1px);
 	pointer-events: none;
     user-select: none;
+}
+
+/* Local SVG Icon styling overrides */
+[data-icon] svg {
+    display: inline-block;
+    vertical-align: middle;
+    width: 1.2em;
+    height: 1.2em;
+}
+
+.header-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 6px;
+    vertical-align: middle;
+    color: #a1a1aa;
+}
+
+.control-panel-btn svg {
+    width: 1.3em;
+    height: 1.3em;
+    stroke-width: 2;
+}
+
+.header-social-button svg {
+    width: 1.2em;
+    height: 1.2em;
+}
+
+.checkbox-fill svg {
+    width: 0.8em;
+    height: 0.8em;
+    stroke-width: 3.5;
 }

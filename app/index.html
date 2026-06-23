@@ -34,9 +34,9 @@
 		<script src="../assets/libraries/SnapDOM/snapdom.min.js"></script>
 		<script type="module" src="./assets/js/misc/exposeModules.js"></script>
 		<script src="./assets/js/globals.js"></script>
+		<script src="./assets/js/misc/icons.js"></script>
 		<script src="./assets/js/misc/userscriptBridge.js"></script>
 		<script src="./assets/js/misc/translationProcessor.js"></script>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"/>
 		<link rel="stylesheet" type="text/css" href="../assets/css/chessground.base.css"/>
 		<link rel="stylesheet" type="text/css" href="../assets/css/chessground.brown.css"/>
 		<link rel="stylesheet" type="text/css" href="../assets/css/theme-cburnett.css"/>
@@ -97,15 +97,9 @@
 						<div class="dropdown-list-container">
 						</div>
 					</div></div>
-					<a class="header-social-button greasyfork-button acas-fancy-button" href="https://greasyfork.org/en/scripts/459137/feedback" target="_blank" title="Give A.C.A.S positive feedback on Greasyfork">
-						<i class="bi bi-chat-text"></i>
-					</a>
-                    <a class="header-social-button affiliate-button acas-fancy-button" href="../contributing" target="_blank" title="Support A.C.A.S development">
-						<i class="bi bi-heart-fill"></i>
-					</a>
-					<a class="header-social-button github-button acas-fancy-button" href="https://github.com/Psyyke/A.C.A.S" target="_blank" title="Star A.C.A.S on GitHub">
-						<i class="bi bi-github"></i>
-					</a>
+					<a class="header-social-button greasyfork-button acas-fancy-button" href="https://greasyfork.org/en/scripts/459137/feedback" target="_blank" title="Give A.C.A.S positive feedback on Greasyfork" data-icon="chat"></a>
+                    <a class="header-social-button affiliate-button acas-fancy-button" href="../contributing" target="_blank" title="Support A.C.A.S development" data-icon="heart"></a>
+					<a class="header-social-button github-button acas-fancy-button" href="https://github.com/Psyyke/A.C.A.S" target="_blank" title="Star A.C.A.S on GitHub" data-icon="github"></a>
 				</div>
 			</div>
 		</div>
@@ -213,10 +207,10 @@
 					</div>
 				</div>
 				<div id="settings-control-panel">
-					<a target="_about" href="../usage/" class="control-panel-btn no-select acas-fancy-button" title="Open Documentation">📖</a>
-					<div id="import-settings-btn" class="control-panel-btn no-select acas-fancy-button" title="Import Settings">📂</div>
-					<div id="export-settings-btn" class="control-panel-btn no-select acas-fancy-button" title="Export Settings">💾</div>
-					<div id="reset-settings-btn" class="control-panel-btn no-select acas-fancy-button" title="Reset Settings">🗑️</div>
+					<a target="_about" href="../usage/" class="control-panel-btn no-select acas-fancy-button" title="Open Documentation" data-icon="book"></a>
+					<div id="import-settings-btn" class="control-panel-btn no-select acas-fancy-button" title="Import Settings" data-icon="import"></div>
+					<div id="export-settings-btn" class="control-panel-btn no-select acas-fancy-button" title="Export Settings" data-icon="export"></div>
+					<div id="reset-settings-btn" class="control-panel-btn no-select acas-fancy-button" title="Reset Settings" data-icon="trash"></div>
 				</div>
 			</div>
 			<div id="userscript-info-small"></div>
@@ -232,7 +226,7 @@
 					<div id="settings-navbar-subtitle">Settings affect every instance</div>
 					<div id="settings-panels">
 						<div class="setting-panel">
-							<div class="setting-panel-title"><span class="engine-panel-title">Engine</span> ⚙️</div>
+							<div class="setting-panel-title"><span class="engine-panel-title">Engine</span> <span class="header-icon" data-icon="gear"></span></div>
 							<div class="checkbox-input custom-input"><div><div class="input-title">Enabled</div>
 								<div class="input-subtitle">Is the engine enabled</div></div><div class="checkbox-container">
 								<input type="checkbox" data-key="engineEnabled" data-default-value="true"><div class="checkbox-fill">✔</div></div>
@@ -250,7 +244,7 @@
 													<p data-translation-engine-subtitle>Please select the engine you like</p>
 												</div>
 												<div class="floaty-buttons">
-													<button class="floaty-close-btn acas-fancy-button">💾</button>
+													<button class="floaty-close-btn acas-fancy-button" data-icon="export"></button>
 												</div>
 											</section>
 											<section class="floaty-body">
@@ -271,9 +265,6 @@
 																</div>
 																<div class="dropdown-item" data-value="stockfish-17-lite-single">
 																Stockfish 17 Lite <span class="engine-type-tag list-tag">WASM</span> <span class="engine-size-tag list-tag">(7MB)</span> <span class="stable-engine-tag list-tag">Stable</span>
-																</div>
-																<div class="dropdown-item requires-sab" data-value="stockfish-16-1-wasm">
-																Stockfish 16 <span class="engine-type-tag list-tag">WASM</span> <span class="engine-type-tag list-tag">NNUE</span> <span class="multithread-tag list-tag">Multithread</span> <span class="engine-size-tag list-tag">(79MB)</span>
 																</div>
 																<div class="dropdown-item requires-sab" data-value="fairy-stockfish-nnue-wasm">
 																💖 Fairy Stockfish 14 <span class="engine-type-tag list-tag">WASM</span> <span class="engine-size-tag list-tag">(2MB)</span> <span class="variants-engine-tag list-tag">Variants</span> <span class="stable-engine-tag list-tag">Stable</span>
@@ -341,7 +332,7 @@
 													<p data-translation-adelo-subtitle>Settings for engine behaviour fine tuning</p>
 												</div>
 												<div class="floaty-buttons">
-													<button class="floaty-close-btn acas-fancy-button">💾</button>
+													<button class="floaty-close-btn acas-fancy-button" data-icon="export"></button>
 												</div>
 											</section>
 											<section class="floaty-body">
@@ -439,11 +430,11 @@
 							</div>
 						</div>
 						<div class="setting-panel">
-							<div class="setting-panel-title"><span class="visual-panel-title">Visual</span> 👁️‍🗨️</div>
+							<div class="setting-panel-title"><span class="visual-panel-title">Visual</span> <span class="header-icon" data-icon="eye"></span></div>
 							<div class="floaty-input custom-input">
 								<div><div class="input-title" data-translation-rendering-title>Rendering Settings</div><div class="input-subtitle" data-translation-rendering-subtitle>Display various metrics on the board</div></div>
 								<div class="floaty-wrapper">
-									<button class="open-floaty-btn acas-fancy-button">⚙️</button>
+									<button class="open-floaty-btn acas-fancy-button" data-icon="gear"></button>
 								    <dialog id="rendering-floaty">
 										<div class="floaty-container">
 											<section class="floaty-header">
@@ -452,7 +443,7 @@
 													<p data-translation-rendering-subtitle>Display various metrics on the board</p>
 												</div>
 												<div class="floaty-buttons">
-													<button class="floaty-close-btn acas-fancy-button">💾</button>
+													<button class="floaty-close-btn acas-fancy-button" data-icon="export"></button>
 												</div>
 											</section>
 											<section class="floaty-body">
@@ -502,7 +493,7 @@
 							<div class="floaty-input custom-input">
 								<div><div class="input-title" data-translation-feedback-title>Feedback Settings</div><div class="input-subtitle" data-translation-feedback-subtitle>Get feedback on your moves</div></div>
 								<div class="floaty-wrapper">
-									<button class="open-floaty-btn acas-fancy-button">⚙️</button>
+									<button class="open-floaty-btn acas-fancy-button" data-icon="gear"></button>
 								    <dialog id="feedback-floaty">
 										<div class="floaty-container">
 											<section class="floaty-header">
@@ -511,7 +502,7 @@
 													<p data-translation-feedback-subtitle>Get feedback on your moves</p>
 												</div>
 												<div class="floaty-buttons">
-													<button class="floaty-close-btn acas-fancy-button">💾</button>
+													<button class="floaty-close-btn acas-fancy-button" data-icon="export"></button>
 												</div>
 											</section>
 											<section class="floaty-body">
@@ -549,7 +540,7 @@
 							<div class="floaty-input custom-input">
 								<div><div class="input-title" data-translation-accessibility-title>Accessibility Settings</div><div class="input-subtitle" data-translation-accessibility-subtitle>Improve your personal experience</div></div>
 								<div class="floaty-wrapper">
-									<button class="open-floaty-btn acas-fancy-button">⚙️</button>
+									<button class="open-floaty-btn acas-fancy-button" data-icon="gear"></button>
 								    <dialog id="accessibility-floaty">
 										<div class="floaty-container">
 											<section class="floaty-header">
@@ -558,7 +549,7 @@
 													<p data-translation-accessibility-subtitle>Improve your personal experience</p>
 												</div>
 												<div class="floaty-buttons">
-													<button class="floaty-close-btn acas-fancy-button">💾</button>
+													<button class="floaty-close-btn acas-fancy-button" data-icon="export"></button>
 												</div>
 											</section>
 											<section class="floaty-body">
@@ -606,7 +597,7 @@
 							</div>
 						</div>
 						<div class="setting-panel">
-							<div class="setting-panel-title"><span class="visual-panel-title">Visual</span> #2 👁️‍🗨️</div>
+							<div class="setting-panel-title"><span class="visual-panel-title">Visual</span> #2 <span class="header-icon" data-icon="eye"></span></div>
 							<div class="checkbox-input custom-input"><div><div class="input-title">Moves on external site</div>
 								<div class="input-subtitle">Show move arrows on chess site's board (e.g. chess.com's board)</div></div><div class="checkbox-container">
 								<input type="checkbox" data-key="displayMovesOnExternalSite" data-default-value="true"><div class="checkbox-fill">✔</div></div>
@@ -631,7 +622,7 @@
 							</div>
 						</div>
 						<div class="setting-panel">
-							<div class="setting-panel-title"><span class="audible-panel-title">Audible</span> 🔊</div>
+							<div class="setting-panel-title"><span class="audible-panel-title">Audible</span> <span class="header-icon" data-icon="volume"></span></div>
 							<div class="checkbox-input custom-input"><div><div class="input-title">Move TTS</div>
 								<div class="input-subtitle">Hear best moves</div></div>
 								<div id="tts-name-dropdown" class="dropdown-input custom-input disabled-input"><div class="dropdown-input-container">
@@ -648,7 +639,7 @@
 							</div>
 						</div>
 						<div id="hidden-setting-panel" class="setting-panel">
-							<div class="setting-panel-title"><span class="hidden-panel-title">Hidden</span> 👻</div>
+							<div class="setting-panel-title"><span class="hidden-panel-title">Hidden</span> <span class="header-icon" data-icon="ghost"></span></div>
 							<div class="tos-reminder-setting-panel-item"><a href="../tos" class="tos-reminder-link" target="_blank">Remember to follow the ToS</a> 💖<br><small class="no-updates-disclaimer-text">Do not ask for updates for these</small><span> ↴</span></div>
 							<div class="input-combination-box">
 								<div class="checkbox-input custom-input"><div><div class="input-title">Auto Move</div>
@@ -696,7 +687,7 @@
 					</div>
 				</div>
 				<div class="setting-panel">
-					<div class="setting-panel-title"><span class="misc-panel-title">Miscellaneous</span> ❔</div>
+					<div class="setting-panel-title"><span class="misc-panel-title">Miscellaneous</span> <span class="header-icon" data-icon="book"></span></div>
 					<div class="checkbox-input custom-input"><div><div class="input-title">Ghost Script</div>
 						<div class="input-subtitle">Disable all detectable external functionality (e.g. move arrows) to avoid detection</div></div><div class="checkbox-container">
 						<input type="checkbox" data-key="isUserscriptGhost" data-no-profile="true" data-default-value="false"><div class="checkbox-fill">✔</div></div>
@@ -704,7 +695,7 @@
 					<div class="checkbox-input custom-input"><div><div class="input-title">Floating Panel</div>
 						<div class="input-subtitle">Important! Stops A.C.A.S from freezing!</div></div>
 						<div class="floaty-wrapper">
-							<button class="open-floaty-btn acas-fancy-button">⚙️</button>
+							<button class="open-floaty-btn acas-fancy-button" data-icon="gear"></button>
 							<dialog id="floating-floaty">
 								<div class="floaty-container">
 									<section class="floaty-header">
@@ -713,7 +704,7 @@
 											<p data-translation-ffs-subtitle>These are mainly for Firefox users</p>
 										</div>
 										<div class="floaty-buttons">
-											<button class="floaty-close-btn acas-fancy-button">💾</button>
+											<button class="floaty-close-btn acas-fancy-button" data-icon="export"></button>
 										</div>
 									</section>
 									<section class="floaty-body">

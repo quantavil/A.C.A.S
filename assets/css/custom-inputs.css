@@ -372,23 +372,26 @@ input:focus {
     background-color: rgb(255 255 255 / 20%);
 }
 .acas-fancy-button {
-    border-width: 2px !important;
-    border-bottom-width: 5px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 6px !important;
     user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
     text-decoration: none;
-    box-shadow: 0 .1rem 0 rgb(0 0 0 / 10%);
+    transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.15s, border-color 0.15s;
+    box-shadow: none !important;
 }
 .acas-fancy-button:hover {
-    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    transform: translateY(-1px);
     cursor: pointer;
 }
 .acas-fancy-button:active {
-    border-width: 2px !important;
-    transform: translateY(3px) !important;
-    margin-top: 3px !important;
+    transform: scale(0.97) !important;
+    background-color: rgba(255, 255, 255, 0.04);
 }
 /* Floaty */
 .open-floaty-btn {
