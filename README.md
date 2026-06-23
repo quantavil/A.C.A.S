@@ -32,7 +32,8 @@ A.C.A.S (Advanced Chess Assistance System) is an open-source chess assistant (**
 * Adaptive thinking depth (thinks deeper when losing, shallower when winning)
 * Humanized move methods (Click, Drag, or Natural Hybrid that alternates styles and utilizes curved Bezier trajectories)
 * Customizable themes (colors, fonts, textures)
-* Chess variants supported (chess960, Fairy Stockfish variants)
+* Chess variants supported (chess960, Fairy Stockfish variants like Crazyhouse, Horde, and Atomic - including full drop move indicators and overlay rendering for Crazyhouse)
+* Picture-in-Picture (PiP) video stream overlay, dynamically displaying the current active engine name on the header
 * Translated into 30+ languages
 * No anti-features on userscript
 
@@ -46,12 +47,11 @@ A.C.A.S (Advanced Chess Assistance System) is an open-source chess assistant (**
 | [Stockfish WASM](https://github.com/nmrugg/stockfish.js/) | Chess engine (main engine) | GPL-3.0 |
 | [ZeroFish](https://github.com/schlawg/zerofish) | WASM port of Lc0 + Stockfish | GPL-3.0 |
 | [Maia-Chess](https://github.com/CSSLab/maia-chess) | Human-like NN weights | GPL-3.0 |
-| [Maia-Platform-Frontend](https://github.com/CSSLab/maia-platform-frontend) | Maia 2 engine source | MIT |
 | [Lozza](https://github.com/op12no2/lozza) | Additional chess engine | MIT |
 | [COI-Serviceworker](https://github.com/gzuidhof/coi-serviceworker) | Enables WASM on GitHub Pages | MIT |
 | [ChessgroundX](https://github.com/gbtami/chessgroundx) | Chessboard UI (modified) | GPL-3.0 |
 | [FileSaver](http://purl.eligrey.com/github/FileSaver.js) | Save config files | MIT |
-| [chess.js](https://github.com/jhlywa/chess.js) | Game logic (Maia 2) | BSD-2-Clause |
+| [chess.js](https://github.com/jhlywa/chess.js) | Game logic | BSD-2-Clause |
 | [onnxruntime-web](https://github.com/Microsoft/onnxruntime) | Run ML models in browser | MIT |
 | [Klaro!](https://github.com/klaro-org/klaro-js) | Cookie consent manager | BSD 3-Clause |
 | [SnapDOM](https://github.com/zumerlab/snapdom) | DOM → image screenshots | MIT |
