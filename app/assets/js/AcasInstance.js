@@ -373,18 +373,17 @@ export default class AcasInstance {
             const isMaiaEngine = engineType.includes('maia');
             const engineEnemyElo = await this.getConfigValue(this.configKeys.engineEnemyElo, profile);
             const maiaEloRanges = {
-                maia2: [1100, 2000],
                 maia3: [600, 2600]
             };
 
             if(isMaiaEngine && !isExternal) {
-                const [min, max] = maiaEloRanges[engineType];
+                const [min, max] = maiaEloRanges[engineType] || [600, 2600];
 
                 const clampedEngineElo = Math.max(min, Math.min(max, elo));
                 const clampedEnemyElo = Math.max(min, Math.min(max, engineEnemyElo));
 
                 if(clampedEngineElo !== elo || clampedEnemyElo !== engineEnemyElo) {
-                    toast.warning(`"Maia ${engineType === 'maia3' ? 3 : 2}" ELO: ${min}–${max}`, 30000);
+                    toast.warning(`"Maia 3" ELO: ${min}–${max}`, 30000);
                 }
 
                 this.sendMsgToEngine(`setoption name Enemy_Elo value ${clampedEnemyElo}`, profile);
@@ -832,7 +831,10 @@ export default class AcasInstance {
             });
         }
 
-        updatePipData({ moveObjects });
+        const rawEngineName = this.getEngineAcasObj(profile)?.type;
+        const engineName = GET_HUMAN_READABLE_ENGINE_NAME(rawEngineName);
+
+        updatePipData({ moveObjects, engineName });
 
         moveObjects.forEach(moveObj => {
             const spokenText = moveObj.player

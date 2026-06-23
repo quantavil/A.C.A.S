@@ -72,7 +72,7 @@ export function runSettingChangeObserver(inputElem, delayMs = 0, wasCalledByUpda
         case 'chessEngine':
             const eloInput = engineEloInput.querySelector('input[data-key="engineElo"]');
             const isMaiaEngine = value && value.includes('maia');
-            const enginesWithoutAdvancedElo = ['maia2', 'maia3', 'fairy-stockfish-nnue-wasm'];
+            const enginesWithoutAdvancedElo = ['maia3', 'fairy-stockfish-nnue-wasm'];
             const isExternal = IS_EXTERNAL_ENGINE_SETTING_ACTIVE[SETTING_FILTER_OBJ.profileID];
 
             ensureOneDynamicEngineSettingVisible(value);

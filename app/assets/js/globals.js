@@ -1199,3 +1199,20 @@ function GET_UNIQUE_ID() {
         (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
     )
 }
+
+function GET_HUMAN_READABLE_ENGINE_NAME(name) {
+    if (!name) return 'A.C.A.S';
+    const mappings = {
+        'stockfish-18-single': 'Stockfish 18',
+        'stockfish-18-lite-single': 'Stockfish 18 Lite',
+        'stockfish-17-single': 'Stockfish 17',
+        'stockfish-17-lite-single': 'Stockfish 17 Lite',
+        'fairy-stockfish-nnue-wasm': 'Fairy Stockfish 14',
+        'maia3': 'Maia 3',
+        'lc0': 'Lc0',
+        'lozza-9': 'Lozza 9',
+        'lozza-5': 'Lozza 5',
+        'acas-fusion': 'Fusion α'
+    };
+    return mappings[name] || name;
+}

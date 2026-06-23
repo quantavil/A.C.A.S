@@ -264,42 +264,6 @@ export default async function loadEngine(profileName, engineName, attempt = 0) {
         };
     }
 
-    function loadMaia2() {
-        const maia = new Worker('../app/assets/engines/Maia2/worker.js', { type: 'module' });
-        let maia_loaded = false;
-
-        maia.onmessage = async e => {
-            if(e.data === true) {
-                maia_loaded = true;
-
-                this.engines.push({
-                    'type': profileChessEngine,
-                    'engine': (method, a) => maia.postMessage({ method: method, args: [...a] }),
-                    'sendMsg': msg => maia.postMessage({ method: 'uci', args: [msg] }),
-                    'worker': maia,
-                    profileName
-                });
-    
-                startGame.bind(this)();
-            } else if (e.data) {
-                processEngineMessage(e.data);
-            }
-        };
-
-        const waitMaia = setInterval(() => {
-            if(maia_loaded) {
-                clearInterval(waitMaia);
-                return;
-            }
-
-            maia.postMessage({ method: 'acas_check_loaded' });
-        }, 100);
-
-        maia.onerror = e => {
-            restartEngine.bind(this)('maia2', e);
-        };
-    }
-    
     // When using loadStockfish(folderName, fileName), make sure the folder name
     // is exactly the same as the switch case string, since otherwise reloading wont work
     // "Maia 3" is the default
@@ -318,15 +282,6 @@ export default async function loadEngine(profileName, engineName, attempt = 0) {
 
         case 'stockfish-17-lite-single':
             loadStockfish.bind(this)('stockfish-17-lite-single');
-            break;
-
-
-        case 'stockfish-11':
-            loadStockfish.bind(this)('stockfish-11');
-            break;
-
-        case 'stockfish-8':
-            loadStockfish.bind(this)('stockfish-8');
             break;
 
         case 'fairy-stockfish-nnue-wasm':
@@ -351,10 +306,6 @@ export default async function loadEngine(profileName, engineName, attempt = 0) {
 
         case 'maia3':
             loadMaia3.bind(this)();
-            break;
-
-        case 'maia2':
-            loadMaia2.bind(this)();
             break;
 
         default:

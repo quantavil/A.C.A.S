@@ -44,6 +44,7 @@ async function startWithDynamicOptions(variant, engineName, profile) {
 export default async function engineStartNewGame(variant, profile) {
     const chessVariant = FORMAT_VARIANT(variant);
     const engineName = await this.getEngineName(profile);
+    updatePipData({ engineName: GET_HUMAN_READABLE_ENGINE_NAME(engineName) });
     const playerColor = await this.getPlayerColor(profile);
     const isAdvancedElo = await this.getConfigValue(this.configKeys.enableAdvancedElo, profile);
 

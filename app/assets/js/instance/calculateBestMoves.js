@@ -97,6 +97,9 @@ export default async function calculateBestMoves(currentFen, config = {}) {
         // This is just a backup. It's not terrible to go infinite depth but problematic.
         let searchCommandStr = 'go infinite' + specificMoves;
 
+        const rawEngineName = this.getEngineAcasObj(profileName)?.type;
+        const engineName = GET_HUMAN_READABLE_ENGINE_NAME(rawEngineName);
+
         switch(await this.getEngineName(profileName)) {
             case 'acas-fusion':
                 const calcDepth = this.pV[profileName].searchDepth || 100;
@@ -107,7 +110,7 @@ export default async function calculateBestMoves(currentFen, config = {}) {
 
                 searchCommandStr = `go depth ${calcDepth}${specificMoves} history ${historyString}`;
 
-                updatePipData({ 'goalDepth': calcDepth });
+                updatePipData({ 'goalDepth': calcDepth, engineName });
                 
                 break;
 
@@ -120,10 +123,10 @@ export default async function calculateBestMoves(currentFen, config = {}) {
 
                 if(nodes > 0) {
                     searchCommandStr = `go nodes ${nodes}${specificMoves}`;
-                    updatePipData({ 'goalNodes': nodes });
+                    updatePipData({ 'goalNodes': nodes, engineName });
                 } else {
                     searchCommandStr = `go depth ${depth}${specificMoves}`;
-                    updatePipData({ 'goalDepth': depth });
+                    updatePipData({ 'goalDepth': depth, engineName });
                 }
 
                 break;
@@ -134,7 +137,7 @@ export default async function calculateBestMoves(currentFen, config = {}) {
 
         const movetime = await this.getConfigValue(this.configKeys.maxMovetime, profileName);
 
-        updatePipData({ 'startTime': Date.now(), movetime });
+        updatePipData({ 'startTime': Date.now(), movetime, engineName });
 
         const statusText = `Calculating best moves with UCI command: ${searchCommandStr}\n`
             + `Max movetime: ${movetime || 'None'}`;

@@ -158,9 +158,10 @@ async function refreshPipView() {
     ctxQueue.push(['fillRect', [0, 0, headerWidth, pipHeaderHeight - pipStatusBarHeight]]);
 
     // Header title
+    const headerTitle = pipData.engineName || 'A.C.A.S';
     ctxQueue.push(['fillStyle', 'white']);
     ctxQueue.push(['font', `800 ${pipFontSizes.medium}px Mona Sans`]);
-    ctxQueue.push(['fillText', ['A.C.A.S', 12, 32]]);
+    ctxQueue.push(['fillText', [headerTitle, 12, 32, pipMaxTextWidth]]);
 
     // Subtext font
     ctxQueue.push(['fillStyle', 'rgba(255, 255, 255, 0.7)']);
