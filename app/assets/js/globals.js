@@ -480,7 +480,7 @@ function COUNT_TOTAL_PIECES_FROM_FEN(fen) {
 }
 
 function FEN_TO_ARRAYS(fen) {
-    const rows = fen.split('/');
+    const rows = fen.replace(/\[.*?\]/g, '').split('/');
     const board = [];
 
     for(let row of rows) {
